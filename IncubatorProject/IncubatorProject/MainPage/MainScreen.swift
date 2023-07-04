@@ -27,6 +27,8 @@ struct MainScreen: View {
                     Text("Настройки")
                     Image(systemName: "gearshape.fill")
                 }
+        }.onAppear {
+            ViewModel.getChatHistory()
         }
     }
     var chat : some View {
@@ -84,17 +86,15 @@ struct MainScreen: View {
                             .cornerRadius(12)
                             .foregroundColor(.black)
                     Button {
-                        ViewModel.addUserMessage()
-                        ViewModel.getresponse()
+                        ViewModel.sendMessage()
                         ViewModel.userMessage = ""
+                        
                     } label: {
                         Image(systemName: "arrow.up")
                             .resizable().frame(width: 15, height: 20)
                     }
                 }
                 .onSubmit {
-                    ViewModel.addUserMessage()
-                    ViewModel.getresponse()
                     ViewModel.userMessage = ""
                 }
                 .padding()
