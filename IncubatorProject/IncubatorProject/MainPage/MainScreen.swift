@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import AttributedText
+
 
 struct MainScreen: View {
     @ObservedObject var ViewModel : MainViewModel
@@ -48,7 +50,7 @@ struct MainScreen: View {
                             Spacer()
                         }
                         ForEach(ViewModel.chat_history, id: \.self) { message in
-                            if message["role"] == "Assistant" {
+                            if message["role"] == "assistant" {
                                 HStack {
                                     Text(message["content"]!)
                                         .padding(10)
@@ -60,7 +62,7 @@ struct MainScreen: View {
                                     Spacer()
                                 }
                             }
-                            else if message["role"] == "User" {
+                            else if message["role"] == "user" {
                                 HStack {
                                     Spacer()
                                     Text(message["content"]!)
@@ -86,8 +88,10 @@ struct MainScreen: View {
                             .cornerRadius(12)
                             .foregroundColor(.black)
                     Button {
+                        ViewModel.chat_history.append(["role": "user",  "content": ViewModel.userMessage])
                         ViewModel.sendMessage()
                         ViewModel.userMessage = ""
+                        
                         
                     } label: {
                         Image(systemName: "arrow.up")
@@ -95,6 +99,8 @@ struct MainScreen: View {
                     }
                 }
                 .onSubmit {
+                    ViewModel.chat_history.append(["role": "user",  "content": ViewModel.userMessage])
+                    ViewModel.sendMessage()
                     ViewModel.userMessage = ""
                 }
                 .padding()

@@ -84,7 +84,22 @@ class MainViewModel : ObservableObject {
             switch result {
             case let .success(response):
                 if response.statusCode == 200 {
-                    
+                    if let string = String(data: response.data, encoding: .utf8) {
+                        if let jsonData = string.data(using: .utf8) {
+                            do {
+                                if let jsonArray = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [[String: String]] {
+                                    self.chat_history = jsonArray
+                                } else {
+                                    print("Failed to convert string to array of dictionaries.")
+                                }
+                            } catch {
+                                print("Error parsing JSON: \(error)")
+                            }
+                        } else {
+                            print("Invalid JSON string.")
+                        }
+                    }
+                    print("Successfully received chat history")
                 }
             case .failure:
                 break
@@ -101,6 +116,12 @@ class MainViewModel : ObservableObject {
             switch result {
             case let .success(response):
                 if response.statusCode == 200 {
+                    if let string = String(data: response.data, encoding: .utf8) {
+                        let unquotedString = string.trimmingCharacters(in: CharacterSet(charactersIn: "\""))
+                        let newstring = unquotedString.replacingOccurrences(of: "\\n", with: "\n")
+                        self.chat_history.append(["role": "assistant",  "content": newstring])
+                        print(newstring)
+                    }
                     print("Message Sent!")
                 }
             case .failure:

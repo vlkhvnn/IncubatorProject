@@ -23,6 +23,7 @@
 		7A5E7ACA2A52C0FE001D2EAD /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E7AC92A52C0FE001D2EAD /* MainScreen.swift */; };
 		7A5E7ACC2A52E747001D2EAD /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E7ACB2A52E747001D2EAD /* SettingsScreen.swift */; };
 		7A5E7ACE2A52E7FC001D2EAD /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E7ACD2A52E7FC001D2EAD /* ProfileScreen.swift */; };
+		7A88444A2A5538A400E97505 /* AttributedText in Frameworks */ = {isa = PBXBuildFile; productRef = 7A8844492A5538A400E97505 /* AttributedText */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 				7A0370692A5329F200FB1C54 /* RxMoya in Frameworks */,
 				7A0370632A5329F200FB1C54 /* CombineMoya in Frameworks */,
 				7A0370672A5329F200FB1C54 /* ReactiveMoya in Frameworks */,
+				7A88444A2A5538A400E97505 /* AttributedText in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,6 +162,7 @@
 				7A0370642A5329F200FB1C54 /* Moya */,
 				7A0370662A5329F200FB1C54 /* ReactiveMoya */,
 				7A0370682A5329F200FB1C54 /* RxMoya */,
+				7A8844492A5538A400E97505 /* AttributedText */,
 			);
 			productName = IncubatorProject;
 			productReference = 7A5E7A6F2A52BA93001D2EAD /* IncubatorProject.app */;
@@ -191,6 +194,7 @@
 			mainGroup = 7A5E7A662A52BA92001D2EAD;
 			packageReferences = (
 				7A0370612A5329F100FB1C54 /* XCRemoteSwiftPackageReference "Moya" */,
+				7A8844482A5538A400E97505 /* XCRemoteSwiftPackageReference "AttributedText" */,
 			);
 			productRefGroup = 7A5E7A702A52BA93001D2EAD /* Products */;
 			projectDirPath = "";
@@ -438,6 +442,14 @@
 				minimumVersion = 15.0.0;
 			};
 		};
+		7A8844482A5538A400E97505 /* XCRemoteSwiftPackageReference "AttributedText" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/AttributedText";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -460,6 +472,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7A0370612A5329F100FB1C54 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = RxMoya;
+		};
+		7A8844492A5538A400E97505 /* AttributedText */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7A8844482A5538A400E97505 /* XCRemoteSwiftPackageReference "AttributedText" */;
+			productName = AttributedText;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
