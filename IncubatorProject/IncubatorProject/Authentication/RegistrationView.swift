@@ -10,22 +10,25 @@ import SwiftUI
 struct RegistrationView: View {
     @ObservedObject var ViewModel : MainViewModel
     var body: some View {
-        ZStack {
+        if ViewModel.isLoading {
+            LoadingView()
+        }
+        else {
             VStack {
                 VStack(spacing: 16) {
-                    TextField("Email", text: $ViewModel.userEmail)
+                    TextField("Почта", text: $ViewModel.userEmail)
                         .padding(.leading)
                         .frame(height: 48)
                         .background(Color(red: 0.96, green: 0.96, blue: 0.96))
-                    TextField("Phone", text: $ViewModel.userPhone)
+                    TextField("Номер телефона", text: $ViewModel.userPhone)
                         .padding(.leading)
                         .frame(height: 48)
                         .background(Color(red: 0.96, green: 0.96, blue: 0.96))
-                    SecureField("Password", text: $ViewModel.userPassword)
+                    SecureField("Пароль", text: $ViewModel.userPassword)
                         .padding(.leading)
                         .frame(height: 48)
                         .background(Color(red: 0.96, green: 0.96, blue: 0.96))
-                    SecureField("Repeat password", text: $ViewModel.repeatedPassword)
+                    SecureField("Повторите пароль", text: $ViewModel.repeatedPassword)
                         .padding(.leading)
                         .frame(height: 48)
                         .background(Color(red: 0.96, green: 0.96, blue: 0.96))
@@ -42,19 +45,18 @@ struct RegistrationView: View {
                             .frame(height: 52)
                             .padding()
                             .foregroundColor(.black)
-                        Text("Sign up").foregroundColor(.white)
+                        Text("Зарегистрироваться").foregroundColor(.white)
                     }
                 }
-            }
-            if ViewModel.isLoading {
-                LoadingView()
-            }
+            }.padding(.horizontal).padding(.top, 20)
+                .navigationTitle("Новый пользователь")
+                .navigationBarBackButtonTitleHidden()
         }
-        .padding(.horizontal).padding(.top, 50)
-            .navigationTitle("New User")
-            .navigationBarBackButtonTitleHidden()
+        
+        
     }
 }
+
 
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
@@ -103,6 +105,7 @@ struct LoadingView: View {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .blue))
                     .scaleEffect(5)
+                Spacer().frame(height: 50)
                 Text("Идет загрузка. Подождите")
                     .bold()
                     .font(.system(size: 24))

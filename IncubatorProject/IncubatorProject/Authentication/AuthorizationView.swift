@@ -24,7 +24,7 @@ struct AuthorizationView: View {
                     .frame(height: 48)
                     .background(Color(red: 0.96, green: 0.96, blue: 0.96))
                 if ViewModel.inValidPassword {
-                    Text("Invalid password or email.")
+                    Text("Неправильные данные. Пожалуйста, убедитесь в корректности введенных данных")
                 }
                 Spacer()
                 Button {

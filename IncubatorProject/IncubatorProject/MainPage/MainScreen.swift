@@ -17,15 +17,15 @@ struct MainScreen: View {
                     Text("Чат")
                     Image(systemName: "message.fill")
                 }
-            ProfileScreen()
+            FavouritesScreen()
+                .tabItem {
+                    Text("Избранные")
+                    Image(systemName: "heart.fill")
+                }
+            ProfileScreen(ViewModel: ViewModel)
                 .tabItem {
                     Text("Профиль")
                     Image(systemName: "person.crop.circle.fill")
-                }
-            SettingsScreen()
-                .tabItem {
-                    Text("Настройки")
-                    Image(systemName: "gearshape.fill")
                 }
         }.onAppear {
             ViewModel.getChatHistory()
@@ -38,6 +38,7 @@ struct MainScreen: View {
                 TitleRow()
                 ScrollViewReader  { proxy in
                     ScrollView {
+                        
                         LazyVStack{
                             ForEach(ViewModel.chat_history, id: \.self) { message in
                                 if message.dictMessage["role"] == "assistant" {
@@ -76,7 +77,7 @@ struct MainScreen: View {
                     }
                 }
                 HStack {
-                    TextField("Message", text: $ViewModel.userMessage)
+                    TextField("Введите сообщение", text: $ViewModel.userMessage)
                             .padding(.leading)
                             .frame(height: 35)
                             .background(Color(red: 239/255, green: 239/255, blue: 239/255))

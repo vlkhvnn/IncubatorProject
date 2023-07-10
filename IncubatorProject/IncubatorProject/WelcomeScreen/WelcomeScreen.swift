@@ -32,21 +32,26 @@ struct WelcomeScreen: View {
                         Text("У меня уже есть аккаунт")
                             .foregroundColor(.black)
                             .bold()
-                    }).padding(.bottom, 30)
-                }.ignoresSafeArea().accentColor(.black)
+                    })
+                }.accentColor(.black)
             }
         }
     }
     var welcomepage : some View {
-        ZStack {
-            VStack {
+        HStack {
+            VStack(alignment: .leading) {
+                Text("Добро пожаловать в ")
+                    .font(.system(size: 24))
+                    .bold()
+                Text("CarAI")
+                    .font(.system(size: 24))
+                    .bold()
+                    .foregroundColor(Color(red: 0, green: 100/255, blue: 229/255))
                 Spacer()
-                Text("Добро пожаловать в CarGPT")
-                    .font(.system(size: 28))
-                    .multilineTextAlignment(.center)
-                
-            }.ignoresSafeArea()
-        }
+            }
+            Spacer()
+        }.padding()
+        
     }
     
 }

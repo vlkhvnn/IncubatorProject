@@ -9,8 +9,6 @@ import Foundation
 import SwiftUI
 import Alamofire
 
-
-
 class MainViewModel : ObservableObject {
     @Published var userEmail = ""
     @Published var userPhone = ""
@@ -23,7 +21,7 @@ class MainViewModel : ObservableObject {
     @Published var userToken = ""
     @Published var isLoading = false
     @Published var chat_history : [message] = []
-    
+    @Published var savedUserEmail = UserDefaults.standard.string(forKey: "savedUserEmail")
     func createMessage(dictMessage: [String:String]) -> message {
         return message(dictMessage: dictMessage)
     }
@@ -55,7 +53,8 @@ class MainViewModel : ObservableObject {
                 break
             }
         }
-        
+        savedUserEmail = userEmail
+        UserDefaults.standard.set(savedUserEmail, forKey: "savedUserEmail")
     }
     
     func convertDataToDictionary(data: Data) -> [String: String]? {
@@ -77,19 +76,28 @@ class MainViewModel : ObservableObject {
         ) { [self] result in
             switch result {
             case let .success(response):
-                let responseData = response.data
-                let dict = convertDataToDictionary(data: responseData)
-                userToken = dict!["access_token"]!
-                print(response)
                 if response.statusCode == 200 {
+                    let responseData = response.data
+                    let dict = convertDataToDictionary(data: responseData)
+                    userToken = dict!["access_token"]!
+                    print(response)
                     isLoading = false
                     userLoggedIn = true
                     print(userToken)
+                }
+                else {
+                    isLoading = false
+                    userLoggedIn = false
+                    inValidPassword = true
+                    print("Invalid password")
+                    print(response)
                 }
             case .failure:
                 break
             }
         }
+        savedUserEmail = userEmail
+        UserDefaults.standard.set(savedUserEmail, forKey: "savedUserEmail")
     }
     
     func getChatHistory() {
