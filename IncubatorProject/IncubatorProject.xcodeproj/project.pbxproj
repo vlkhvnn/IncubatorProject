@@ -12,6 +12,7 @@
 		7A0370672A5329F200FB1C54 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 7A0370662A5329F200FB1C54 /* ReactiveMoya */; };
 		7A0370692A5329F200FB1C54 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 7A0370682A5329F200FB1C54 /* RxMoya */; };
 		7A03706C2A532A3D00FB1C54 /* APIservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A03706B2A532A3D00FB1C54 /* APIservice.swift */; };
+		7A25E1092A5BC59F003517E6 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A25E1082A5BC59F003517E6 /* ChatModel.swift */; };
 		7A5E7A732A52BA93001D2EAD /* IncubatorProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E7A722A52BA93001D2EAD /* IncubatorProjectApp.swift */; };
 		7A5E7A772A52BA94001D2EAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A5E7A762A52BA94001D2EAD /* Assets.xcassets */; };
 		7A5E7A7A2A52BA94001D2EAD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A5E7A792A52BA94001D2EAD /* Preview Assets.xcassets */; };
@@ -23,11 +24,11 @@
 		7A5E7ACA2A52C0FE001D2EAD /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E7AC92A52C0FE001D2EAD /* MainScreen.swift */; };
 		7A5E7ACC2A52E747001D2EAD /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E7ACB2A52E747001D2EAD /* SettingsScreen.swift */; };
 		7A5E7ACE2A52E7FC001D2EAD /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E7ACD2A52E7FC001D2EAD /* ProfileScreen.swift */; };
-		7A88444A2A5538A400E97505 /* AttributedText in Frameworks */ = {isa = PBXBuildFile; productRef = 7A8844492A5538A400E97505 /* AttributedText */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7A03706B2A532A3D00FB1C54 /* APIservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIservice.swift; sourceTree = "<group>"; };
+		7A25E1082A5BC59F003517E6 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		7A5E7A6F2A52BA93001D2EAD /* IncubatorProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IncubatorProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A5E7A722A52BA93001D2EAD /* IncubatorProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncubatorProjectApp.swift; sourceTree = "<group>"; };
 		7A5E7A762A52BA94001D2EAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,7 +52,6 @@
 				7A0370692A5329F200FB1C54 /* RxMoya in Frameworks */,
 				7A0370632A5329F200FB1C54 /* CombineMoya in Frameworks */,
 				7A0370672A5329F200FB1C54 /* ReactiveMoya in Frameworks */,
-				7A88444A2A5538A400E97505 /* AttributedText in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				7A5E7ABC2A52BE30001D2EAD /* MainViewModel.swift */,
+				7A25E1082A5BC59F003517E6 /* ChatModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -162,7 +163,6 @@
 				7A0370642A5329F200FB1C54 /* Moya */,
 				7A0370662A5329F200FB1C54 /* ReactiveMoya */,
 				7A0370682A5329F200FB1C54 /* RxMoya */,
-				7A8844492A5538A400E97505 /* AttributedText */,
 			);
 			productName = IncubatorProject;
 			productReference = 7A5E7A6F2A52BA93001D2EAD /* IncubatorProject.app */;
@@ -194,7 +194,6 @@
 			mainGroup = 7A5E7A662A52BA92001D2EAD;
 			packageReferences = (
 				7A0370612A5329F100FB1C54 /* XCRemoteSwiftPackageReference "Moya" */,
-				7A8844482A5538A400E97505 /* XCRemoteSwiftPackageReference "AttributedText" */,
 			);
 			productRefGroup = 7A5E7A702A52BA93001D2EAD /* Products */;
 			projectDirPath = "";
@@ -224,6 +223,7 @@
 			files = (
 				7A03706C2A532A3D00FB1C54 /* APIservice.swift in Sources */,
 				7A5E7ACC2A52E747001D2EAD /* SettingsScreen.swift in Sources */,
+				7A25E1092A5BC59F003517E6 /* ChatModel.swift in Sources */,
 				7A5E7ACA2A52C0FE001D2EAD /* MainScreen.swift in Sources */,
 				7A5E7ABA2A52BDD9001D2EAD /* OnBoardingScreen.swift in Sources */,
 				7A5E7AC02A52BEE7001D2EAD /* WelcomeScreen.swift in Sources */,
@@ -442,14 +442,6 @@
 				minimumVersion = 15.0.0;
 			};
 		};
-		7A8844482A5538A400E97505 /* XCRemoteSwiftPackageReference "AttributedText" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/gonzalezreal/AttributedText";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -472,11 +464,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7A0370612A5329F100FB1C54 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = RxMoya;
-		};
-		7A8844492A5538A400E97505 /* AttributedText */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7A8844482A5538A400E97505 /* XCRemoteSwiftPackageReference "AttributedText" */;
-			productName = AttributedText;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

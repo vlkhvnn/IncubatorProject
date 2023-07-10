@@ -40,10 +40,6 @@ struct WelcomeScreen: View {
     var welcomepage : some View {
         ZStack {
             VStack {
-                Image("car_photo1")
-                Spacer()
-                    .frame(height: 20)
-                Image("car_photo2")
                 Spacer()
                 Text("Добро пожаловать в CarGPT")
                     .font(.system(size: 28))

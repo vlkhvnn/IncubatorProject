@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 import Alamofire
 
+
+
 class MainViewModel : ObservableObject {
     @Published var userEmail = ""
     @Published var userPhone = ""
@@ -17,11 +19,23 @@ class MainViewModel : ObservableObject {
     @Published var userLoggedIn = false
     @Published var inValidEmail = false
     @Published var inValidPassword = false
-    @Published var chat_history : [[String: String]] = []
     @Published var userMessage = ""
     @Published var userToken = ""
+    @Published var isLoading = false
+    @Published var chat_history : [message] = []
+    
+    func createMessage(dictMessage: [String:String]) -> message {
+        return message(dictMessage: dictMessage)
+    }
+    
+    struct message :Identifiable, Hashable, Codable {
+        var dictMessage : [String: String]
+        var id = UUID()
+    }
     
     func register() {
+        self.isLoading = true
+        self.chat_history.append(message(dictMessage: ["role": "assistant",  "content": "Привет! Я ИИ специалист по машинам. Я могу ответить на любые ваши вопросы касательно машин и могу рекомендовать машины основываясь на ваших нуждах."]))
         let provider = MoyaProvider<APIService>()
         provider.request(
             .registration(
@@ -34,6 +48,7 @@ class MainViewModel : ObservableObject {
             case let .success(response):
                 print(response)
                 if response.statusCode == 201 {
+                    self.isLoading = false
                     self.userLoggedIn = true
                 }
             case .failure:
@@ -55,6 +70,7 @@ class MainViewModel : ObservableObject {
     }
     
     func login() {
+        self.isLoading = true
         let provider = MoyaProvider<APIService>()
         provider.request(
             .authorization(userEmail: userEmail, userPassword: userPassword)
@@ -62,10 +78,11 @@ class MainViewModel : ObservableObject {
             switch result {
             case let .success(response):
                 let responseData = response.data
-                var dict = convertDataToDictionary(data: responseData)
+                let dict = convertDataToDictionary(data: responseData)
                 userToken = dict!["access_token"]!
                 print(response)
                 if response.statusCode == 200 {
+                    isLoading = false
                     userLoggedIn = true
                     print(userToken)
                 }
@@ -88,7 +105,9 @@ class MainViewModel : ObservableObject {
                         if let jsonData = string.data(using: .utf8) {
                             do {
                                 if let jsonArray = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [[String: String]] {
-                                    self.chat_history = jsonArray
+                                    for dict in jsonArray {
+                                        self.chat_history.append(message(dictMessage: dict))
+                                    }
                                 } else {
                                     print("Failed to convert string to array of dictionaries.")
                                 }
@@ -119,7 +138,7 @@ class MainViewModel : ObservableObject {
                     if let string = String(data: response.data, encoding: .utf8) {
                         let unquotedString = string.trimmingCharacters(in: CharacterSet(charactersIn: "\""))
                         let newstring = unquotedString.replacingOccurrences(of: "\\n", with: "\n")
-                        self.chat_history.append(["role": "assistant",  "content": newstring])
+                        self.chat_history.append(message(dictMessage: ["role": "assistant",  "content": newstring]))
                         print(newstring)
                     }
                     print("Message Sent!")

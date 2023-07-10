@@ -6,12 +6,10 @@
 //
 
 import SwiftUI
-import AttributedText
 
 
 struct MainScreen: View {
     @ObservedObject var ViewModel : MainViewModel
-    
     var body: some View {
         TabView {
             chat
@@ -37,48 +35,45 @@ struct MainScreen: View {
         ZStack {
             Color(red: 246/255, green: 246/255, blue: 246/255).ignoresSafeArea()
             VStack {
-                ScrollView {
-                    LazyVStack{
-                        HStack {
-                            Text("Привет! Я ИИ специалист по машинам. Я могу ответить на любые ваши вопросы касательно машин и могу рекомендовать машины основываясь на ваших нуждах.")
-                                .padding(10)
-                                .background(Color.gray.opacity(0.15))
-                                .cornerRadius(10)
-                                .padding(.horizontal, 16)
-                                .padding(.trailing, 32)
-                                .padding(.bottom, 10)
-                            Spacer()
-                        }
-                        ForEach(ViewModel.chat_history, id: \.self) { message in
-                            if message["role"] == "assistant" {
-                                HStack {
-                                    Text(message["content"]!)
-                                        .padding(10)
-                                        .background(Color.gray.opacity(0.15))
-                                        .cornerRadius(10)
-                                        .padding(.horizontal, 16)
-                                        .padding(.trailing, 32)
-                                        .padding(.bottom, 10)
-                                    Spacer()
+                TitleRow()
+                ScrollViewReader  { proxy in
+                    ScrollView {
+                        LazyVStack{
+                            ForEach(ViewModel.chat_history, id: \.self) { message in
+                                if message.dictMessage["role"] == "assistant" {
+                                    HStack {
+                                        Text(message.dictMessage["content"]!)
+                                            .padding(10)
+                                            .background(Color.gray.opacity(0.15))
+                                            .cornerRadius(30)
+                                            .padding(.horizontal, 16)
+                                            .padding(.trailing, 32)
+                                            .padding(.bottom, 10)
+                                        Spacer()
+                                    }
+                                }
+                                else if message.dictMessage["role"] == "user" {
+                                    HStack {
+                                        Spacer()
+                                        Text(message.dictMessage["content"]!)
+                                            .padding(10)
+                                            .foregroundColor(Color.white)
+                                            .background(Color.blue.opacity(0.8))
+                                            .cornerRadius(30)
+                                            .padding(.horizontal, 16)
+                                            .padding(.leading)
+                                            .padding(.bottom, 10)
+                                    }
                                 }
                             }
-                            else if message["role"] == "user" {
-                                HStack {
-                                    Spacer()
-                                    Text(message["content"]!)
-                                        .padding(10)
-                                        .foregroundColor(Color.white)
-                                        .background(Color.blue.opacity(0.8))
-                                        .cornerRadius(10)
-                                        .padding(.horizontal, 16)
-                                        .padding(.leading)
-                                        .padding(.bottom, 10)
-                                }
-                            }
-                        }
 
+                        }
                     }
-                    
+                    .onChange(of: ViewModel.chat_history) { _ in
+                        withAnimation {
+                            proxy.scrollTo(ViewModel.chat_history.last!)
+                        }
+                    }
                 }
                 HStack {
                     TextField("Message", text: $ViewModel.userMessage)
@@ -88,7 +83,7 @@ struct MainScreen: View {
                             .cornerRadius(12)
                             .foregroundColor(.black)
                     Button {
-                        ViewModel.chat_history.append(["role": "user",  "content": ViewModel.userMessage])
+                        ViewModel.chat_history.append(ViewModel.createMessage(dictMessage: ["role": "user",  "content": ViewModel.userMessage]))
                         ViewModel.sendMessage()
                         ViewModel.userMessage = ""
                         
@@ -99,13 +94,30 @@ struct MainScreen: View {
                     }
                 }
                 .onSubmit {
-                    ViewModel.chat_history.append(["role": "user",  "content": ViewModel.userMessage])
+                    ViewModel.chat_history.append(ViewModel.createMessage(dictMessage: ["role": "user",  "content": ViewModel.userMessage]))
                     ViewModel.sendMessage()
                     ViewModel.userMessage = ""
                 }
                 .padding()
             }
         }
+
+    }
+}
+
+struct TitleRow: View {
+    var body: some View {
+        HStack(spacing: 20) {
+            Image(systemName: "circle")
+            VStack(alignment: .leading) {
+                Text("CarAI")
+                    .font(.title).bold()
+                Text("Ваш помощник по машинам")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
+            Spacer()
+        }.padding()
     }
 }
 
@@ -114,3 +126,4 @@ struct MainScreen_Previews: PreviewProvider {
         MainScreen(ViewModel: MainViewModel())
     }
 }
+

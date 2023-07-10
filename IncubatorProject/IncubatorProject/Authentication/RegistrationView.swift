@@ -10,42 +10,47 @@ import SwiftUI
 struct RegistrationView: View {
     @ObservedObject var ViewModel : MainViewModel
     var body: some View {
-        VStack {
-            VStack(spacing: 16) {
-                TextField("Email", text: $ViewModel.userEmail)
-                    .padding(.leading)
-                    .frame(height: 48)
-                    .background(Color(red: 0.96, green: 0.96, blue: 0.96))
-                TextField("Phone", text: $ViewModel.userPhone)
-                    .padding(.leading)
-                    .frame(height: 48)
-                    .background(Color(red: 0.96, green: 0.96, blue: 0.96))
-                SecureField("Password", text: $ViewModel.userPassword)
-                    .padding(.leading)
-                    .frame(height: 48)
-                    .background(Color(red: 0.96, green: 0.96, blue: 0.96))
-                SecureField("Repeat password", text: $ViewModel.repeatedPassword)
-                    .padding(.leading)
-                    .frame(height: 48)
-                    .background(Color(red: 0.96, green: 0.96, blue: 0.96))
-                if self.ViewModel.inValidEmail {
-                    Text("Email is already taken or it is invalid. Please use another or valid email")
+        ZStack {
+            VStack {
+                VStack(spacing: 16) {
+                    TextField("Email", text: $ViewModel.userEmail)
+                        .padding(.leading)
+                        .frame(height: 48)
+                        .background(Color(red: 0.96, green: 0.96, blue: 0.96))
+                    TextField("Phone", text: $ViewModel.userPhone)
+                        .padding(.leading)
+                        .frame(height: 48)
+                        .background(Color(red: 0.96, green: 0.96, blue: 0.96))
+                    SecureField("Password", text: $ViewModel.userPassword)
+                        .padding(.leading)
+                        .frame(height: 48)
+                        .background(Color(red: 0.96, green: 0.96, blue: 0.96))
+                    SecureField("Repeat password", text: $ViewModel.repeatedPassword)
+                        .padding(.leading)
+                        .frame(height: 48)
+                        .background(Color(red: 0.96, green: 0.96, blue: 0.96))
+                    if self.ViewModel.inValidEmail {
+                        Text("Email is already taken or it is invalid. Please use another or valid email")
+                    }
+                }
+                Spacer()
+                Button {
+                    self.ViewModel.register()
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 32)
+                            .frame(height: 52)
+                            .padding()
+                            .foregroundColor(.black)
+                        Text("Sign up").foregroundColor(.white)
+                    }
                 }
             }
-            Spacer()
-            Button {
-                self.ViewModel.register()
-            } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 32)
-                        .frame(height: 52)
-                        .padding()
-                        .foregroundColor(.black)
-                    Text("Sign up").foregroundColor(.white)
-                }
+            if ViewModel.isLoading {
+                LoadingView()
             }
-
-        }.padding(.horizontal).padding(.top, 50)
+        }
+        .padding(.horizontal).padding(.top, 50)
             .navigationTitle("New User")
             .navigationBarBackButtonTitleHidden()
     }
@@ -87,4 +92,23 @@ struct NavigationBarBackButtonTitleHiddenModifier: ViewModifier {
           }
       )
   }
+}
+
+struct LoadingView: View {
+    var body: some View {
+        ZStack {
+            Color(.systemBackground)
+                .ignoresSafeArea()
+            VStack {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .blue))
+                    .scaleEffect(5)
+                Text("Идет загрузка. Подождите")
+                    .bold()
+                    .font(.system(size: 24))
+                    .multilineTextAlignment(.center)
+            }
+            
+        }
+    }
 }
