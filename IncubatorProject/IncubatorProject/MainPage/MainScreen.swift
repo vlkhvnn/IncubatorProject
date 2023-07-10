@@ -38,7 +38,16 @@ struct MainScreen: View {
                 TitleRow()
                 ScrollViewReader  { proxy in
                     ScrollView {
-                        
+                        HStack {
+                            Text("Привет! Я ИИ специалист по машинам. Я могу ответить на любые ваши вопросы касательно машин и могу рекомендовать машины основываясь на ваших нуждах.")
+                                .padding(10)
+                                .background(Color.gray.opacity(0.15))
+                                .cornerRadius(10)
+                                .padding(.horizontal, 16)
+                                .padding(.trailing, 32)
+                                .padding(.bottom, 10)
+                            Spacer()
+                        }
                         LazyVStack{
                             ForEach(ViewModel.chat_history, id: \.self) { message in
                                 if message.dictMessage["role"] == "assistant" {
@@ -46,7 +55,7 @@ struct MainScreen: View {
                                         Text(message.dictMessage["content"]!)
                                             .padding(10)
                                             .background(Color.gray.opacity(0.15))
-                                            .cornerRadius(30)
+                                            .cornerRadius(10)
                                             .padding(.horizontal, 16)
                                             .padding(.trailing, 32)
                                             .padding(.bottom, 10)
@@ -60,7 +69,7 @@ struct MainScreen: View {
                                             .padding(10)
                                             .foregroundColor(Color.white)
                                             .background(Color.blue.opacity(0.8))
-                                            .cornerRadius(30)
+                                            .cornerRadius(10)
                                             .padding(.horizontal, 16)
                                             .padding(.leading)
                                             .padding(.bottom, 10)

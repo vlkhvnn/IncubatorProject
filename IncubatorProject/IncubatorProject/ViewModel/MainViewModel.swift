@@ -33,7 +33,6 @@ class MainViewModel : ObservableObject {
     
     func register() {
         self.isLoading = true
-        self.chat_history.append(message(dictMessage: ["role": "assistant",  "content": "Привет! Я ИИ специалист по машинам. Я могу ответить на любые ваши вопросы касательно машин и могу рекомендовать машины основываясь на ваших нуждах."]))
         let provider = MoyaProvider<APIService>()
         provider.request(
             .registration(
@@ -41,11 +40,15 @@ class MainViewModel : ObservableObject {
                 phone: userPhone,
                 password: userPassword
             )
-        ) { result in
+        ) { [self] result in
             switch result {
             case let .success(response):
                 print(response)
                 if response.statusCode == 201 {
+                    let responseData = response.data
+                    let dict = convertDataToDictionary(data: responseData)
+                    userToken = dict!["access_token"]!
+                    print(responseData)
                     self.isLoading = false
                     self.userLoggedIn = true
                 }
@@ -142,14 +145,11 @@ class MainViewModel : ObservableObject {
         ) { result in
             switch result {
             case let .success(response):
-                if response.statusCode == 200 {
-                    if let string = String(data: response.data, encoding: .utf8) {
-                        let unquotedString = string.trimmingCharacters(in: CharacterSet(charactersIn: "\""))
-                        let newstring = unquotedString.replacingOccurrences(of: "\\n", with: "\n")
-                        self.chat_history.append(message(dictMessage: ["role": "assistant",  "content": newstring]))
-                        print(newstring)
-                    }
-                    print("Message Sent!")
+                if let string = String(data: response.data, encoding: .utf8) {
+                    let unquotedString = string.trimmingCharacters(in: CharacterSet(charactersIn: "\""))
+                    let newstring = unquotedString.replacingOccurrences(of: "\\n", with: "\n")
+                    self.chat_history.append(message(dictMessage: ["role": "assistant",  "content": newstring]))
+                    print("Answer is replied!")
                 }
             case .failure:
                 break

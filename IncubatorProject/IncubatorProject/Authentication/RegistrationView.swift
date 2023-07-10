@@ -12,6 +12,7 @@ struct RegistrationView: View {
     var body: some View {
         if ViewModel.isLoading {
             LoadingView()
+                .navigationBarBackButtonTitleHidden()
         }
         else {
             VStack {
@@ -103,13 +104,9 @@ struct LoadingView: View {
                 .ignoresSafeArea()
             VStack {
                 ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: .blue))
-                    .scaleEffect(5)
-                Spacer().frame(height: 50)
-                Text("Идет загрузка. Подождите")
-                    .bold()
-                    .font(.system(size: 24))
-                    .multilineTextAlignment(.center)
+                    .progressViewStyle(CircularProgressViewStyle(tint: .black))
+                    .scaleEffect(3)
+                
             }
             
         }

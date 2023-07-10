@@ -11,7 +11,7 @@ struct AuthorizationView: View {
     @ObservedObject var ViewModel : MainViewModel
     var body: some View {
         if ViewModel.isLoading {
-            LoadingView()
+            LoadingView().navigationBarBackButtonHidden()
         }
         else {
             VStack(spacing: 16) {
