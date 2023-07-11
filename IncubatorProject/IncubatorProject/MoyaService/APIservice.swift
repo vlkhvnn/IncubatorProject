@@ -4,7 +4,7 @@ import Moya
 enum APIService {
     case registration(email: String, phone: String, password: String)
     case authorization(userEmail: String, userPassword: String)
-    case sendMessage(message: String)
+    case sendMessage(message: String, chat_history: String)
     case getChat
 }
 
@@ -20,7 +20,7 @@ extension APIService: TargetType, AccessTokenAuthorizable {
             return "/auth/users/tokens"
         case .registration(_, _, _):
             return "/auth/users"
-        case .sendMessage(_):
+        case .sendMessage(_, _):
             return "/auth/chat/getresponse"
         case .getChat:
             return "/auth/users/chat"
@@ -31,15 +31,16 @@ extension APIService: TargetType, AccessTokenAuthorizable {
         switch self {
         case .registration(_, _, _), .authorization(_, _):
             return .post
-        case .sendMessage(_), .getChat:
+        case .sendMessage(_, _), .getChat:
             return .get
         }
     }
     
     var task: Moya.Task {
         switch self {
-        case let .sendMessage(message):
+        case let .sendMessage(message, chat_history):
             let parameters: [String: Any] = [
+                "chat_history": chat_history,
                 "question": message,
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
@@ -63,7 +64,7 @@ extension APIService: TargetType, AccessTokenAuthorizable {
     
     var authorizationType: Moya.AuthorizationType? {
         switch self {
-        case .getChat, .sendMessage(_):
+        case .getChat, .sendMessage(_, _):
             return .bearer
         case .authorization(_, _), .registration(_, _, _):
             return .none

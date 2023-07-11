@@ -68,7 +68,23 @@ struct ProfileScreen: View {
                         }
                     }
                     Spacer()
+                    Button {
+                        ViewModel.showSignOutAlert = true
+                    } label: {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 32)
+                                .frame(height: 54)
+                                .padding()
+                                .foregroundColor(.black)
+                            Text("Выйти с аккаунта").foregroundColor(.white)
+                        }
+                    }
                 }
+            }.alert(isPresented: $ViewModel.showSignOutAlert) {
+                Alert(title: Text("Вы уверены что хотите выйти с аккаунта?"), primaryButton: .default(Text("Да")) {
+                    ViewModel.signOut()
+                },
+                      secondaryButton: .cancel(Text("Нет")))
             }
         }
         

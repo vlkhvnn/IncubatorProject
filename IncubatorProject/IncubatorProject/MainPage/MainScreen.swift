@@ -28,8 +28,8 @@ struct MainScreen: View {
                     Image(systemName: "person.crop.circle.fill")
                 }
         }.onAppear {
-            ViewModel.getChatHistory()
-        }
+            ViewModel.fetchChatHistory()
+        }.accentColor(.black)
     }
     var chat : some View {
         ZStack {

@@ -5,7 +5,7 @@
 //  Created by Alikhan Tangirbergen on 03.07.2023.
 //
 import SwiftUI
-
+import Firebase
 
 enum AppScreenState {
     case onboarding
@@ -18,6 +18,7 @@ struct IncubatorProject: App {
     private let app = MainViewModel()
     var isOnboardingSeen : Bool
     init() {
+        FirebaseApp.configure()
         self.isOnboardingSeen = UserDefaults.standard.bool(forKey: "isOnboardingSeen")
         switch isOnboardingSeen {
         case true:
