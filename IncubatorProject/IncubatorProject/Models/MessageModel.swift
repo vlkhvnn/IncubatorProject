@@ -13,3 +13,4 @@ struct Message : Identifiable, Codable, Hashable {
     var isUserMessage: Bool
     var timestamp : Date
 }
+

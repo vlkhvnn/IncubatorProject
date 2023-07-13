@@ -18,14 +18,14 @@ struct AccountInformationView: View {
                     .frame(height: 48)
                     .background(Color(red: 0.96, green: 0.96, blue: 0.96))
                 Text("Пароль")
-                TextField("", text: $ViewModel.userPassword)
+                TextField(ViewModel.savedUserPassword!, text: $ViewModel.userPassword)
                     .padding(.leading)
                     .frame(height: 48)
                     .background(Color(red: 0.96, green: 0.96, blue: 0.96))
             }
             Spacer()
             
-        }.frame(maxWidth: .infinity, alignment: .leading).padding()
+        }.frame(maxWidth: .infinity, alignment: .leading).padding().navigationBarBackButtonTitleHidden()
     }
 }
 

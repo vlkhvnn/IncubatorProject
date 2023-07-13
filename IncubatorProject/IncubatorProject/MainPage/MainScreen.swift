@@ -16,7 +16,7 @@ struct MainScreen: View {
                     Text("Чат")
                     Image(systemName: "message.fill")
                 }
-            FavouritesScreen()
+            FavouritesScreen(ViewModel: ViewModel)
                 .tabItem {
                     Text("Избранные")
                     Image(systemName: "heart.fill")
@@ -76,7 +76,18 @@ struct MainScreen: View {
                                 }
                                 
                             }
-
+                            if ViewModel.isLoadingResponse {
+                                HStack {
+                                    Text("Подождите, бот генерирует ответ...")
+                                        .padding(10)
+                                        .background(Color.gray.opacity(0.15))
+                                        .cornerRadius(10)
+                                        .padding(.horizontal, 16)
+                                        .padding(.trailing, 32)
+                                        .padding(.bottom, 10)
+                                    Spacer()
+                                }
+                            }
                         }
                     }
                     .onChange(of: ViewModel.messages) { _ in
@@ -94,6 +105,7 @@ struct MainScreen: View {
                             .foregroundColor(.black)
                     Button {
                         ViewModel.messages.append(Message(content: ViewModel.userMessage, isUserMessage: true, timestamp: Date()))
+                        ViewModel.isLoadingResponse = true
                         ViewModel.savedUserMessage = ViewModel.userMessage
                         ViewModel.userMessage = ""
                         ViewModel.addUserMessageToFirestore()
@@ -101,15 +113,16 @@ struct MainScreen: View {
                     } label: {
                             Image(systemName: "arrow.up")
                                 .resizable().frame(width: 15, height: 20)
-                    }
+                    }.disabled(ViewModel.isLoadingResponse)
                 }
                 .onSubmit {
                     ViewModel.messages.append(Message(content: ViewModel.userMessage, isUserMessage: true, timestamp: Date()))
+                    ViewModel.isLoadingResponse = true
                     ViewModel.savedUserMessage = ViewModel.userMessage
                     ViewModel.userMessage = ""
                     ViewModel.addUserMessageToFirestore()
                     ViewModel.sendMessage()
-                }
+                }.disabled(ViewModel.isLoadingResponse)
                 .padding()
             }
         }

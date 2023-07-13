@@ -8,7 +8,7 @@ enum APIService {
     case getChat
 }
 
-extension APIService: TargetType, AccessTokenAuthorizable {
+extension APIService: TargetType {
     
     var baseURL: URL {
         URL(string: "https://fastapi-px6e.onrender.com")!
@@ -60,15 +60,6 @@ extension APIService: TargetType, AccessTokenAuthorizable {
     
     var headers: [String : String]? {
         return nil
-    }
-    
-    var authorizationType: Moya.AuthorizationType? {
-        switch self {
-        case .getChat, .sendMessage(_, _):
-            return .bearer
-        case .authorization(_, _), .registration(_, _, _):
-            return .none
-        }
     }
     
 }

@@ -9,10 +9,10 @@ import SwiftUI
 
 struct RegistrationView: View {
     @ObservedObject var ViewModel : MainViewModel
+    @State var repeatedpassword = ""
     var body: some View {
         if ViewModel.isLoading {
-            LoadingView()
-                .navigationBarBackButtonTitleHidden()
+            LoadingView().navigationBarBackButtonHidden()
         }
         else {
             VStack {
@@ -21,21 +21,19 @@ struct RegistrationView: View {
                         .padding(.leading)
                         .frame(height: 48)
                         .background(Color(red: 0.96, green: 0.96, blue: 0.96))
-                    TextField("Номер телефона", text: $ViewModel.userPhone)
-                        .padding(.leading)
-                        .frame(height: 48)
                         .background(Color(red: 0.96, green: 0.96, blue: 0.96))
                     SecureField("Пароль", text: $ViewModel.userPassword)
                         .padding(.leading)
                         .frame(height: 48)
                         .background(Color(red: 0.96, green: 0.96, blue: 0.96))
-                    SecureField("Повторите пароль", text: $ViewModel.repeatedPassword)
+                    SecureField("Повторите пароль", text: $repeatedpassword)
                         .padding(.leading)
                         .frame(height: 48)
                         .background(Color(red: 0.96, green: 0.96, blue: 0.96))
                     if self.ViewModel.inValidEmail {
                         Text("Email is already taken or it is invalid. Please use another or valid email")
                     }
+                    
                 }
                 Spacer()
                 Button {

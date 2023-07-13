@@ -32,6 +32,7 @@ struct WelcomeScreen: View {
                         Text("У меня уже есть аккаунт")
                             .foregroundColor(.black)
                             .bold()
+                            .padding(.bottom)
                     })
                 }.accentColor(.black)
             }
