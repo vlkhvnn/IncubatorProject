@@ -9,6 +9,9 @@ import Foundation
 import SwiftUI
 import Alamofire
 import Firebase
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+
 class MainViewModel : ObservableObject {
     @Published var userEmail = ""
     @Published var userPhone = ""
@@ -20,53 +23,23 @@ class MainViewModel : ObservableObject {
     @Published var userMessage = ""
     @Published var userToken = ""
     @Published var isLoading = false
-    @Published var chat_history : [message] = []
     @Published var showSignOutAlert = false
     @Published var savedUserEmail = UserDefaults.standard.string(forKey: "savedUserEmail")
+    @Published var savedUserPassword = UserDefaults.standard.string(forKey: "savedUserPassword")
     @Published var botResponse = ""
+    @Published var messages : [Message] = []
+    @Published var savedUserMessage = ""
     func convertChatToString() -> String {
-         self.chat_history.map { message in
-            return "\(message.dictMessage["role"] ?? ""): \(message.dictMessage["content"] ?? "")"
+         self.messages.map { message in
+             if message.isUserMessage == true {
+                 return "user: \(message.content)"
+             }
+             else {
+                 return "assistant: \(message.content)"
+             }
+             
         }.joined(separator: "\n")
     }
-    
-    func createMessage(dictMessage: [String:String]) -> message {
-        return message(dictMessage: dictMessage)
-    }
-    
-    struct message :Identifiable, Hashable, Codable {
-        var dictMessage : [String: String]
-        var id = UUID()
-    }
-    
-//    func register() {
-//        self.isLoading = true
-//        let provider = MoyaProvider<APIService>()
-//        provider.request(
-//            .registration(
-//                email: userEmail,
-//                phone: userPhone,
-//                password: userPassword
-//            )
-//        ) { [self] result in
-//            switch result {
-//            case let .success(response):
-//                print(response)
-//                if response.statusCode == 201 {
-//                    let responseData = response.data
-//                    let dict = convertDataToDictionary(data: responseData)
-//                    userToken = dict!["access_token"]!
-//                    print(responseData)
-//                    self.isLoading = false
-//                    self.userLoggedIn = true
-//                }
-//            case .failure:
-//                break
-//            }
-//        }
-//        savedUserEmail = userEmail
-//        UserDefaults.standard.set(savedUserEmail, forKey: "savedUserEmail")
-//    }
     
     func register() {
         self.isLoading = true
@@ -82,69 +55,32 @@ class MainViewModel : ObservableObject {
         }
     }
     
-    func fetchChatHistory() {
-        chat_history.removeAll()
+    func getMessages() {
+        self.messages.removeAll()
         let db = Firestore.firestore()
-        let ref = db.collection("Users").document(Auth.auth().currentUser!.uid).collection("ChatHistory")
-        ref.getDocuments { snapshot, error in
-            guard error == nil else {
-                print(error!.localizedDescription)
+        let ref = db.collection("Users").document(Auth.auth().currentUser!.uid).collection("messages")
+        ref.addSnapshotListener { querySnapshot, error in
+            guard let documents = querySnapshot?.documents else {
+                print("Error fetching documents: \(String(describing: error))")
                 return
             }
-            if let snapshot = snapshot {
-                for document in snapshot.documents {
-                    let data = document.data()
-                    let role = data["role"] as? String ?? ""
-                    let soobwenie = data["content"] as? String ?? ""
-                    let messageinstance = message(dictMessage: ["role": role, "content": soobwenie])
-                    self.chat_history.append(messageinstance)
+            self.messages = documents.compactMap { document -> Message? in
+                do {
+                    // Converting each document into the Message model
+                    // Note that data(as:) is a function available only in FirebaseFirestoreSwift package - remember to import it at the top
+                    return try document.data(as: Message.self)
+                } catch {
+                    // If we run into an error, print the error in the console
+                    print("Error decoding document into Message: \(error)")
+                    
+                    // Return nil if we run into an error - but the compactMap will not include it in the final array
+                    return nil
                 }
             }
+            
+            self.messages.sort { $0.timestamp < $1.timestamp }
         }
     }
-    
-    func convertDataToDictionary(data: Data) -> [String: String]? {
-        do {
-            let jsonDecoder = JSONDecoder()
-            let dictionary = try jsonDecoder.decode([String: String].self, from: data)
-            return dictionary
-        } catch {
-            print("Error converting Data to Dictionary: \(error.localizedDescription)")
-            return nil
-        }
-    }
-    
-//    func login() {
-//        self.isLoading = true
-//        let provider = MoyaProvider<APIService>()
-//        provider.request(
-//            .authorization(userEmail: userEmail, userPassword: userPassword)
-//        ) { [self] result in
-//            switch result {
-//            case let .success(response):
-//                if response.statusCode == 200 {
-//                    let responseData = response.data
-//                    let dict = convertDataToDictionary(data: responseData)
-//                    userToken = dict!["access_token"]!
-//                    print(response)
-//                    isLoading = false
-//                    userLoggedIn = true
-//                    print(userToken)
-//                }
-//                else {
-//                    isLoading = false
-//                    userLoggedIn = false
-//                    inValidPassword = true
-//                    print("Invalid password")
-//                    print(response)
-//                }
-//            case .failure:
-//                break
-//            }
-//        }
-//        savedUserEmail = userEmail
-//        UserDefaults.standard.set(savedUserEmail, forKey: "savedUserEmail")
-//    }
     
     func login() {
         self.isLoading = true
@@ -167,53 +103,29 @@ class MainViewModel : ObservableObject {
     
     func addUserMessageToFirestore() {
         let db = Firestore.firestore()
-        var message : [String : String] = [:]
-        message["role"] = "user"
-        message["content"] = userMessage
-        db.collection("Users").document(Auth.auth().currentUser!.uid).collection("ChatHistory").addDocument(data: message)
+        let ref = db.collection("Users").document(Auth.auth().currentUser!.uid)
+        do {
+            let newMessage = Message(content: self.savedUserMessage, isUserMessage: true, timestamp: Date())
+            try ref.collection("messages").document().setData(from: newMessage)
+            
+        } catch {
+            // If we run into an error, print the error in the console
+            print("Error adding message to Firestore: \(error)")
+        }
     }
     
-    func addBotMessageToFireStore() {
+    func addBotMessageToFirestore(text: String) {
         let db = Firestore.firestore()
-        var message : [String : String] = [:]
-        message["role"] = "assistant"
-        message["content"] = botResponse
-        db.collection("Users").document(Auth.auth().currentUser!.uid).collection("ChatHistory").addDocument(data: message)
+        let ref = db.collection("Users").document(Auth.auth().currentUser!.uid)
+        do {
+            let newMessage = Message(content: text, isUserMessage: false, timestamp: Date())
+            try ref.collection("messages").document().setData(from: newMessage)
+            
+        } catch {
+            // If we run into an error, print the error in the console
+            print("Error adding message to Firestore: \(error)")
+        }
     }
-    
-//    func getChatHistory() {
-//        let authPlugin = AccessTokenPlugin { _ in self.userToken }
-//        let provider = MoyaProvider<APIService>(plugins: [authPlugin])
-//        provider.request(
-//            .getChat
-//        ) { result in
-//            switch result {
-//            case let .success(response):
-//                if response.statusCode == 200 {
-//                    if let string = String(data: response.data, encoding: .utf8) {
-//                        if let jsonData = string.data(using: .utf8) {
-//                            do {
-//                                if let jsonArray = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [[String: String]] {
-//                                    for dict in jsonArray {
-//                                        self.chat_history.append(message(dictMessage: dict))
-//                                    }
-//                                } else {
-//                                    print("Failed to convert string to array of dictionaries.")
-//                                }
-//                            } catch {
-//                                print("Error parsing JSON: \(error)")
-//                            }
-//                        } else {
-//                            print("Invalid JSON string.")
-//                        }
-//                    }
-//                    print("Successfully received chat history")
-//                }
-//            case .failure:
-//                break
-//            }
-//        }
-//    }
     
     func sendMessage() {
         let authPlugin = AccessTokenPlugin { _ in self.userToken }
@@ -227,10 +139,9 @@ class MainViewModel : ObservableObject {
                     let unquotedString = string.trimmingCharacters(in: CharacterSet(charactersIn: "\""))
                     let newstring = unquotedString.replacingOccurrences(of: "\\n", with: "\n")
                     botResponse = newstring
-                    addUserMessageToFirestore()
-                    addBotMessageToFireStore()
-                    chat_history.append(message(dictMessage: ["role": "assistant",  "content": newstring]))
-                    print("Answer is replied!")
+                    self.messages.append(Message(content: botResponse, isUserMessage: false,timestamp: Date()))
+                    self.addBotMessageToFirestore(text: newstring)
+                    print("Answer is successfully received!")
                 }
             case .failure:
                 break
@@ -238,8 +149,9 @@ class MainViewModel : ObservableObject {
         }
     }
     
+    
+    
     func signOut() {
-        userToken = ""
         userLoggedIn = false
         userMessage = ""
     }

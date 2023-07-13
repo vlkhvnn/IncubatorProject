@@ -54,6 +54,7 @@
 		7A6F4F782A5D350C00653EFC /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 7A6F4F772A5D350C00653EFC /* FirebaseStorageCombine-Community */; };
 		7AA275E62A5C1EF600817D35 /* AccountInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA275E52A5C1EF600817D35 /* AccountInformationView.swift */; };
 		7AA275E82A5C1FF200817D35 /* SubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA275E72A5C1FF200817D35 /* SubscriptionView.swift */; };
+		7AB853602A5EFEF100900F15 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB8535F2A5EFEF100900F15 /* MessageModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		7A6F4F402A5D341600653EFC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7AA275E52A5C1EF600817D35 /* AccountInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformationView.swift; sourceTree = "<group>"; };
 		7AA275E72A5C1FF200817D35 /* SubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionView.swift; sourceTree = "<group>"; };
+		7AB8535F2A5EFEF100900F15 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 		7A5E7A712A52BA93001D2EAD /* IncubatorProject */ = {
 			isa = PBXGroup;
 			children = (
+				7AB8535E2A5EFEE800900F15 /* Models */,
 				7A5E7A722A52BA93001D2EAD /* IncubatorProjectApp.swift */,
 				7A5E7AB92A52BDD9001D2EAD /* OnBoardingScreen.swift */,
 				7A5E7ABE2A52BED5001D2EAD /* WelcomeScreen */,
@@ -219,6 +222,14 @@
 				7AA275E72A5C1FF200817D35 /* SubscriptionView.swift */,
 			);
 			path = ProfileViews;
+			sourceTree = "<group>";
+		};
+		7AB8535E2A5EFEE800900F15 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7AB8535F2A5EFEF100900F15 /* MessageModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,6 +351,7 @@
 				7A5E7ACE2A52E7FC001D2EAD /* ProfileScreen.swift in Sources */,
 				7A5E7AC52A52C000001D2EAD /* AuthorizationView.swift in Sources */,
 				7A5E7A732A52BA93001D2EAD /* IncubatorProjectApp.swift in Sources */,
+				7AB853602A5EFEF100900F15 /* MessageModel.swift in Sources */,
 				7A5E7ABD2A52BE30001D2EAD /* MainViewModel.swift in Sources */,
 				7A5E7AC32A52BFEF001D2EAD /* RegistrationView.swift in Sources */,
 			);

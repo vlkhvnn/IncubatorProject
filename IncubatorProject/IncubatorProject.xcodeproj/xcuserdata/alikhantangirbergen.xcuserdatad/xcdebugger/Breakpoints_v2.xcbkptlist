@@ -14,8 +14,8 @@
             filePath = "IncubatorProject/MainPage/MainScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "chat"
             landmarkType = "24">
          </BreakpointContent>
@@ -23,33 +23,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "02675024-A66F-471D-A6B4-37E2546A21E6"
+            uuid = "598EC3D6-BDBC-4484-A585-D5FCBE4FDB4A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
-            landmarkName = "sendMessage()"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "addUserMessageToFirestore()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E6DC498E-D2C7-4147-97F1-26A01F8A238E"
+            uuid = "D9DC0F96-A077-4D20-9C68-9B4EA7601885"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
-            landmarkName = "sendMessage()"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "addUserMessageToFirestore()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D9DC0F96-A077-4D20-9C68-9B4EA7601885 - cf5987fb50127b48"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "IncubatorProject.MainViewModel.addMessageToFirestore() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject%2019.13.05/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "188"
+                  endingLineNumber = "188"
+                  offsetFromSymbolStart = "640">
+               </Location>
+               <Location
+                  uuid = "D9DC0F96-A077-4D20-9C68-9B4EA7601885 - bf65318bcdbbddc2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRDocumentSnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in IncubatorProject.MainViewModel.addMessageToFirestore() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject%2019.13.05/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "189"
+                  endingLineNumber = "189"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

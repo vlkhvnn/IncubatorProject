@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct MainScreen: View {
     @ObservedObject var ViewModel : MainViewModel
     var body: some View {
@@ -28,7 +27,7 @@ struct MainScreen: View {
                     Image(systemName: "person.crop.circle.fill")
                 }
         }.onAppear {
-            ViewModel.fetchChatHistory()
+            ViewModel.getMessages()
         }.accentColor(.black)
     }
     var chat : some View {
@@ -49,10 +48,10 @@ struct MainScreen: View {
                             Spacer()
                         }
                         LazyVStack{
-                            ForEach(ViewModel.chat_history, id: \.self) { message in
-                                if message.dictMessage["role"] == "assistant" {
+                            ForEach(ViewModel.messages, id: \.self) { message in
+                                if message.isUserMessage == false {
                                     HStack {
-                                        Text(message.dictMessage["content"]!)
+                                        Text(message.content)
                                             .padding(10)
                                             .background(Color.gray.opacity(0.15))
                                             .cornerRadius(10)
@@ -62,10 +61,10 @@ struct MainScreen: View {
                                         Spacer()
                                     }
                                 }
-                                else if message.dictMessage["role"] == "user" {
+                                else {
                                     HStack {
                                         Spacer()
-                                        Text(message.dictMessage["content"]!)
+                                        Text(message.content)
                                             .padding(10)
                                             .foregroundColor(Color.white)
                                             .background(Color.blue.opacity(0.8))
@@ -75,13 +74,14 @@ struct MainScreen: View {
                                             .padding(.bottom, 10)
                                     }
                                 }
+                                
                             }
 
                         }
                     }
-                    .onChange(of: ViewModel.chat_history) { _ in
+                    .onChange(of: ViewModel.messages) { _ in
                         withAnimation {
-                            proxy.scrollTo(ViewModel.chat_history.last!)
+                            proxy.scrollTo(ViewModel.messages.last!)
                         }
                     }
                 }
@@ -93,20 +93,22 @@ struct MainScreen: View {
                             .cornerRadius(12)
                             .foregroundColor(.black)
                     Button {
-                        ViewModel.chat_history.append(ViewModel.createMessage(dictMessage: ["role": "user",  "content": ViewModel.userMessage]))
-                        ViewModel.sendMessage()
+                        ViewModel.messages.append(Message(content: ViewModel.userMessage, isUserMessage: true, timestamp: Date()))
+                        ViewModel.savedUserMessage = ViewModel.userMessage
                         ViewModel.userMessage = ""
-                        
-                        
+                        ViewModel.addUserMessageToFirestore()
+                        ViewModel.sendMessage()
                     } label: {
-                        Image(systemName: "arrow.up")
-                            .resizable().frame(width: 15, height: 20)
+                            Image(systemName: "arrow.up")
+                                .resizable().frame(width: 15, height: 20)
                     }
                 }
                 .onSubmit {
-                    ViewModel.chat_history.append(ViewModel.createMessage(dictMessage: ["role": "user",  "content": ViewModel.userMessage]))
-                    ViewModel.sendMessage()
+                    ViewModel.messages.append(Message(content: ViewModel.userMessage, isUserMessage: true, timestamp: Date()))
+                    ViewModel.savedUserMessage = ViewModel.userMessage
                     ViewModel.userMessage = ""
+                    ViewModel.addUserMessageToFirestore()
+                    ViewModel.sendMessage()
                 }
                 .padding()
             }
