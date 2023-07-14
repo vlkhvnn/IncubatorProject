@@ -32,18 +32,30 @@ class MainViewModel : ObservableObject {
     @Published var showingAddFavourite = false
     @Published var isLoadingResponse = false
     
-    
-    
-    func convertChatToString() -> String {
-        self.messages.suffix(10).map { message in
-            if message.isUserMessage == true {
-                return "user: \(message.content)"
+    func login() {
+        self.isLoading = true
+        Auth.auth().signIn(withEmail: userEmail, password: userPassword) { result, error in
+            if let error = error {
+                withAnimation {
+                    self.inValidPassword = true
+                    self.isLoading = false
+                    print(error.localizedDescription)
+                }
             }
-            else {
-                return "assistant: \(message.content)"
+            if result != nil {
+                withAnimation {
+                    self.userID = Auth.auth().currentUser!.uid
+                    self.savedUserEmail = self.userEmail
+                    self.savedUserPassword = self.userPassword
+                    UserDefaults.standard.set(self.savedUserEmail, forKey: "savedUserEmail")
+                    UserDefaults.standard.set(self.userID, forKey: "userID")
+                    UserDefaults.standard.set(self.savedUserPassword, forKey: "savedUserPassword")
+                    print("success")
+                    self.isLoading = false
+                    self.userLoggedIn = true
+                }
             }
-            
-        }.joined(separator: "\n")
+        }
     }
     
     func register() {
@@ -119,28 +131,25 @@ class MainViewModel : ObservableObject {
         }
     }
     
-    func login() {
-        self.isLoading = true
-        Auth.auth().signIn(withEmail: userEmail, password: userPassword) { result, error in
-            if let error = error {
-                withAnimation {
-                    self.inValidPassword = true
-                    self.isLoading = false
-                    print(error.localizedDescription)
+    func sendMessage() {
+        let provider = MoyaProvider<APIService>()
+        provider.request(
+            .sendMessage(message: self.userMessage, chat_history: self.convertChatToString())
+        ) { [self] result in
+            switch result {
+            case let .success(response):
+                if let string = String(data: response.data, encoding: .utf8) {
+                    self.isLoadingResponse = false
+                    let unquotedString = string.trimmingCharacters(in: CharacterSet(charactersIn: "\""))
+                    let newstring = unquotedString.replacingOccurrences(of: "\\n", with: "\n")
+                    botResponse = newstring
+                    self.messages.append(Message(content: botResponse, isUserMessage: false,timestamp: Date()))
+                    self.addBotMessageToFirestore(text: newstring)
+                    print(botResponse)
+                    print("Answer is successfully received!")
                 }
-            }
-            if result != nil {
-                withAnimation {
-                    self.userID = Auth.auth().currentUser!.uid
-                    self.savedUserEmail = self.userEmail
-                    self.savedUserPassword = self.userPassword
-                    UserDefaults.standard.set(self.savedUserEmail, forKey: "savedUserEmail")
-                    UserDefaults.standard.set(self.userID, forKey: "userID")
-                    UserDefaults.standard.set(self.savedUserPassword, forKey: "savedUserPassword")
-                    print("success")
-                    self.isLoading = false
-                    self.userLoggedIn = true
-                }
+            case .failure:
+                break
             }
         }
     }
@@ -183,33 +192,30 @@ class MainViewModel : ObservableObject {
             print("Error adding message to Firestore: \(error)")
         }
     }
-    
-    func sendMessage() {
-        let provider = MoyaProvider<APIService>()
-        provider.request(
-            .sendMessage(message: self.userMessage, chat_history: self.convertChatToString())
-        ) { [self] result in
-            switch result {
-            case let .success(response):
-                if let string = String(data: response.data, encoding: .utf8) {
-                    self.isLoadingResponse = false
-                    let unquotedString = string.trimmingCharacters(in: CharacterSet(charactersIn: "\""))
-                    let newstring = unquotedString.replacingOccurrences(of: "\\n", with: "\n")
-                    botResponse = newstring
-                    self.messages.append(Message(content: botResponse, isUserMessage: false,timestamp: Date()))
-                    self.addBotMessageToFirestore(text: newstring)
-                    print("Answer is successfully received!")
-                }
-            case .failure:
-                break
+
+    func convertChatToString() -> String {
+        self.messages.suffix(10).map { message in
+            if message.isUserMessage == true {
+                return "user: \(message.content)"
             }
-        }
+            else {
+                return "assistant: \(message.content)"
+            }
+            
+        }.joined(separator: "\n")
     }
-    
-    
     
     func signOut() {
         userLoggedIn = false
         userMessage = ""
+    }
+    
+    func ButtonTap() {
+        self.messages.append(Message(content: self.userMessage, isUserMessage: true, timestamp: Date()))
+        self.isLoadingResponse = true
+        self.savedUserMessage = self.userMessage
+        self.userMessage = ""
+        self.addUserMessageToFirestore()
+        self.sendMessage()
     }
 }

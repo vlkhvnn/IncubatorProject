@@ -24,8 +24,20 @@ struct AccountInformationView: View {
                     .background(Color(red: 0.96, green: 0.96, blue: 0.96))
             }
             Spacer()
+            Button {
+                
+            } label: {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 32)
+                        .frame(height: 54)
+                        .padding()
+                        .foregroundColor(.black)
+                    Text("Сохранить изменения").foregroundColor(.white)
+                }
+            }
             
         }.frame(maxWidth: .infinity, alignment: .leading).padding().navigationBarBackButtonTitleHidden()
+            .navigationTitle("Редактировать профиль")
     }
 }
 

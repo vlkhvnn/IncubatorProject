@@ -21,16 +21,12 @@ struct FavouritesScreen: View {
                 LazyVStack {
                     ForEach(ViewModel.favourites, id: \.self) { favourite in
                         HStack {
-                            Text(favourite.mark)
-                            Text(favourite.model)
+                            Text("\(favourite.mark) \(favourite.model)")
                             Spacer()
                             Text(favourite.city)
                         }
                         Divider()
-
                     }
-                                        
-                    
                 }
                 
             }
@@ -41,7 +37,6 @@ struct FavouritesScreen: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 32)
                         .frame(height: 54)
-                        .padding()
                         .foregroundColor(.black)
                     Text("Добавить машину").foregroundColor(.white)
                 }

@@ -31,7 +31,7 @@ struct RegistrationView: View {
                         .frame(height: 48)
                         .background(Color(red: 0.96, green: 0.96, blue: 0.96))
                     if self.ViewModel.inValidEmail {
-                        Text("Email is already taken or it is invalid. Please use another or valid email")
+                        Text("Данная почта уже используется другим пользователем или ее формат неправильный.").padding(.horizontal, -8).multilineTextAlignment(.center)
                     }
                     
                 }
