@@ -11,95 +11,136 @@ struct MainScreen: View {
     @ObservedObject var ViewModel : MainViewModel
     @State private var markdownText = ""
     var body: some View {
-        TabView {
-            chat
-                .tabItem {
-                    Text("Чат")
-                    Image(systemName: "message.fill")
-                }
-            FavouritesScreen(ViewModel: ViewModel)
-                .tabItem {
-                    Text("Избранные")
-                    Image(systemName: "heart.fill")
-                }
-            ProfileScreen(ViewModel: ViewModel)
-                .tabItem {
-                    Text("Профиль")
-                    Image(systemName: "person.crop.circle.fill")
-                }
-        }.onAppear {
+        chat.onAppear {
             ViewModel.getMessages()
         }
     }
     var chat : some View {
-        ZStack {
-            Color(red: 246/255, green: 246/255, blue: 246/255)
-            VStack {
-                TitleRow()
-                ScrollViewReader  { proxy in
-                    ScrollView {
-                        HStack {
-                            Text("Привет! Я ИИ специалист по машинам. Я могу ответить на любые ваши вопросы касательно машин и могу рекомендовать машины основываясь на ваших нуждах.")
-                                .padding(10)
-                                .background(Color.white)
-                                .cornerRadius(10)
-                                .padding(.horizontal, 16)
-                                .padding(.trailing, 32)
-                                .padding(.bottom, 10)
-                            Spacer()
-                        }
-                        LazyVStack{
-                            ForEach(ViewModel.messages, id: \.self) { message in
-                                if message.isUserMessage == false {
-                                    BotMessage(message: message)
-                                }
-                                else {
-                                    UserMessage(message: message)
-                                }
-                                
+        NavigationStack {
+            ZStack {
+                Color(.white)
+                VStack {
+                    TitleRow(ViewModel: ViewModel)
+                    ScrollViewReader  { proxy in
+                        ScrollView {
+                            HStack {
+                                Text("Привет! Я ИИ специалист по машинам. Я могу ответить на любые ваши вопросы касательно машин и могу рекомендовать машины основываясь на ваших нуждах.")
+                                    .padding(10)
+                                    .background(Color(red: 246/255, green: 246/255, blue: 246/255))
+                                    .cornerRadius(10)
+                                    .padding(.horizontal, 16)
+                                    .padding(.trailing, 32)
+                                    .padding(.bottom, 10)
+                                Spacer()
                             }
-                            if ViewModel.isLoadingResponse {
-                                HStack {
-                                    Text("Подождите, бот генерирует ответ...")
-                                        .padding(10)
-                                        .background(Color.white)
-                                        .cornerRadius(10)
-                                        .padding(.horizontal, 16)
-                                        .padding(.trailing, 32)
-                                        .padding(.bottom, 10)
-                                        .padding(.top)
-                                    Spacer()
+                            LazyVStack{
+                                ForEach(ViewModel.messages, id: \.self) { message in
+                                    if message.isUserMessage == false {
+                                        BotMessage(ViewModel: ViewModel, message: message)
+                                        
+                                    }
+                                    else {
+                                        UserMessage(message: message)
+                                    }
+                                    
+                                }
+                                if ViewModel.isLoadingResponse {
+                                    HStack {
+                                        Text("Подождите, бот генерирует ответ...")
+                                            .padding(10)
+                                            .background(Color(red: 246/255, green: 246/255, blue: 246/255))
+                                            .cornerRadius(10)
+                                            .padding(.horizontal, 16)
+                                            .padding(.trailing, 32)
+                                            .padding(.bottom, 10)
+                                            .padding(.top)
+                                        Spacer()
+                                    }
+                                }
+                            }
+                        }
+                        .onChange(of: ViewModel.messages) { _ in
+                            withAnimation {
+                                if !ViewModel.messages.isEmpty {
+                                    proxy.scrollTo(ViewModel.messages.last!)
                                 }
                             }
                         }
                     }
-                    .onChange(of: ViewModel.messages) { _ in
-                        withAnimation {
-                            proxy.scrollTo(ViewModel.messages.last!)
-                        }
-                    }
+                    .overlay(MoreButtonOverlay, alignment: .topTrailing)
+                    BottomRow(ViewModel: ViewModel)
                 }
-                BottomRow(ViewModel: ViewModel)
             }
+        }.alert(isPresented: $ViewModel.showClearChatAlert) {
+            Alert(title: Text("Вы уверены что хотите удалить историю чата?"), primaryButton: .default(Text("Да")) {
+                ViewModel.deleteChat()
+            },
+                  secondaryButton: .cancel(Text("Нет")))
         }
-
     }
     func convertStringToAttributed(text: String) -> LocalizedStringKey {
         return LocalizedStringKey(text)
     }
+    
+    @ViewBuilder private var MoreButtonOverlay : some View {
+        if ViewModel.isMoreButtonTapped {
+            ZStack {
+                RoundedRectangle(cornerRadius: 12).foregroundColor(.white)
+                VStack {
+                    NavigationLink(destination: ProfileScreen(ViewModel: ViewModel))
+                    {
+                        HStack {
+                            Text("Настройки")
+                            Spacer()
+                            Image(systemName: "gearshape")
+                        }.padding(.horizontal)
+                    }
+                    Divider()
+                    Button {
+                        ViewModel.showClearChatAlert = true
+                    } label: {
+                        HStack {
+                            Text("Очистить чат").foregroundColor(.red)
+                            Spacer()
+                            Image(systemName: "trash.fill").foregroundColor(.red)
+                        }.padding(.horizontal)
+                    }
+
+                    
+                }
+            }.frame(width: 200, height: 80).accentColor(.black)
+        }
+    }
 }
 
 struct BotMessage : View {
+    @ObservedObject var ViewModel : MainViewModel
     var message: Message
     var body: some View {
         HStack {
             Text(.init(message.content))
                 .padding(10)
-                .background(Color.white)
+                .background(Color(red: 246/255, green: 246/255, blue: 246/255))
                 .cornerRadius(10)
                 .padding(.horizontal, 16)
                 .padding(.trailing, 32)
                 .padding(.bottom, 10)
+            Spacer()
+            Button {
+                ViewModel.messages[ViewModel.getMessageIndex(message: message)].isFavourite.toggle()
+                ViewModel.updateFavoriteStatus(message: message)
+            } label: {
+                if ViewModel.messages.contains(where: {$0.id == message.id})
+                {
+                    if ViewModel.messages[ViewModel.getMessageIndex(message: message)].isFavourite {
+                        Image(systemName: "heart.fill").foregroundColor(.red)
+                    }
+                    else {
+                        Image(systemName: "heart.fill").foregroundColor(.black.opacity(0.5))
+                    }
+                }
+                
+            }
             Spacer()
         }
     }
@@ -123,6 +164,7 @@ struct UserMessage: View {
 }
 
 struct TitleRow: View {
+    @ObservedObject var ViewModel : MainViewModel
     var body: some View {
         HStack(alignment: .bottom, spacing: 20) {
             Image("carai-logo").resizable().frame(width: 52, height: 52).scaledToFit()
@@ -134,7 +176,15 @@ struct TitleRow: View {
                     .foregroundColor(.gray)
             }
             Spacer()
-        }.padding().frame(height: 60).background(.white)
+            Button {
+                ViewModel.isMoreButtonTapped.toggle()
+            } label: {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 16).foregroundColor(Color(red: 233/255, green: 237/255, blue: 250/255)).opacity(0.5).frame(width: 48, height: 36)
+                    Image(systemName: "ellipsis").foregroundColor(.black)
+                }
+            }
+        }.padding(.horizontal).frame(height: 60).background(.white)
     }
 }
 

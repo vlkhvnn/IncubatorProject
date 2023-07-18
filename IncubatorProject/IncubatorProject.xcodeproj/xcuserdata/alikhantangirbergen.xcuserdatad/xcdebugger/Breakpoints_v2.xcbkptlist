@@ -14,8 +14,8 @@
             filePath = "IncubatorProject/MainPage/MainScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
             landmarkName = "chat"
             landmarkType = "24">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "addUserMessageToFirestore()"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
             landmarkName = "addUserMessageToFirestore()"
             landmarkType = "7">
             <Locations>
@@ -87,17 +87,649 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D4B9FFD3-576B-46FC-AD3A-C9FE23A7DDFA"
+            uuid = "B0F30029-E72B-46FB-8D96-AB84079037B0"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "getOTPCode()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B0F30029-E72B-46FB-8D96-AB84079037B0 - 36860054ece678fa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 @Swift.MainActor @Sendable () -&gt; () in closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  uuid = "B0F30029-E72B-46FB-8D96-AB84079037B0 - 36860054ece678fa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 @Swift.MainActor @Sendable () -&gt; () in closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "48225095-3E4E-45B6-9CB9-AC9D57C0BDEC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "getOTPCode()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "48225095-3E4E-45B6-9CB9-AC9D57C0BDEC - 3852aa0bf4ebc86b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "304">
+               </Location>
+               <Location
+                  uuid = "48225095-3E4E-45B6-9CB9-AC9D57C0BDEC - 7ad48814a4bf676"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "48225095-3E4E-45B6-9CB9-AC9D57C0BDEC - e8e4a2b2403eb06f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  uuid = "48225095-3E4E-45B6-9CB9-AC9D57C0BDEC - 71c1bf5c31a97c65"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "48225095-3E4E-45B6-9CB9-AC9D57C0BDEC - e8e4a2b2403eb06f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "89C6DB38-6287-4E89-A297-53A5EDE68297"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "getOTPCode()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "89C6DB38-6287-4E89-A297-53A5EDE68297 - 59d3abd76de6ed67"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor @Sendable () -&gt; () in closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  uuid = "89C6DB38-6287-4E89-A297-53A5EDE68297 - e8e4a2b2403eb021"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "328">
+               </Location>
+               <Location
+                  uuid = "89C6DB38-6287-4E89-A297-53A5EDE68297 - 67e9c656c743a26"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) await resume partial function for closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "89C6DB38-6287-4E89-A297-53A5EDE68297 - 5976bb789f80382d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "89C6DB38-6287-4E89-A297-53A5EDE68297 - 59d3abd76de6ed44"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor @Sendable () -&gt; () in closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  uuid = "89C6DB38-6287-4E89-A297-53A5EDE68297 - e8e4a2b2403eb021"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "160">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6A8E3F63-9D1F-4AAC-B9CC-2572171E6F8E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
+            landmarkName = "getMessageIndex(message:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C685743A-F794-4913-B7DF-EFBBB5F639F5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "updateFavoriteStatus(message:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C685743A-F794-4913-B7DF-EFBBB5F639F5 - 1d74bff822443f74"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in IncubatorProject.MainViewModel.updateFavoriteStatus(message: IncubatorProject.Message) -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "616">
+               </Location>
+               <Location
+                  uuid = "C685743A-F794-4913-B7DF-EFBBB5F639F5 - c6eb8f3979bd4d99"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in IncubatorProject.MainViewModel.updateFavoriteStatus(message: IncubatorProject.Message) -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "400">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AB2F99F9-1CD3-4A53-949B-C679C3BE796E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "updateFavoriteStatus(message:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CE752764-98AB-4B12-9AFF-D8CE670A9629"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "updateFavoriteStatus(message:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CE752764-98AB-4B12-9AFF-D8CE670A9629 - 7d559938e754216d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in IncubatorProject.MainViewModel.getFavourites() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "CE752764-98AB-4B12-9AFF-D8CE670A9629 - b98476acba6d3237"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in IncubatorProject.MainViewModel.updateFavoriteStatus(message: IncubatorProject.Message) -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "292">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DFE3FAEB-058C-41BD-9386-9CF7B5AEB938"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "updateFavoriteStatus(message:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DFE3FAEB-058C-41BD-9386-9CF7B5AEB938 - 7d559938e75421ab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in IncubatorProject.MainViewModel.getFavourites() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "668">
+               </Location>
+               <Location
+                  uuid = "DFE3FAEB-058C-41BD-9386-9CF7B5AEB938 - b98476acba6d32f1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in IncubatorProject.MainViewModel.updateFavoriteStatus(message: IncubatorProject.Message) -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "104">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7888DF2A-3BCE-40B3-98A9-3DE43FE1E575"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "getFavourites()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3AA08663-664F-47B8-89DC-7729C882644D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "getFavourites()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3AA08663-664F-47B8-89DC-7729C882644D - e419dff5bfcaed26"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "IncubatorProject.MainViewModel.getFavourites() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "130"
+                  endingLineNumber = "130"
+                  offsetFromSymbolStart = "720">
+               </Location>
+               <Location
+                  uuid = "3AA08663-664F-47B8-89DC-7729C882644D - 7d559938e75427ba"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in IncubatorProject.MainViewModel.getFavourites() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "416">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4EBACA4A-1683-4D31-B19B-89367A147489"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "getFavourites()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "23A4DAB7-3FB2-4193-9EE1-B34B657E62D0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "getFavourites()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "476742EE-7E5B-41AF-AED7-F658C36A1D93"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "getFavourites()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1B9EFE10-044B-4FC6-A39D-25C0CFA2537A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "getFavourites()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1B9EFE10-044B-4FC6-A39D-25C0CFA2537A - 7d559938e754210e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in IncubatorProject.MainViewModel.getFavourites() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143"
+                  offsetFromSymbolStart = "2680">
+               </Location>
+               <Location
+                  uuid = "1B9EFE10-044B-4FC6-A39D-25C0CFA2537A - 7d559938e754210e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in IncubatorProject.MainViewModel.getFavourites() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143"
+                  offsetFromSymbolStart = "2456">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6629D429-D043-4574-AE7D-C7BB1BC704C6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "getFavourites()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6629D429-D043-4574-AE7D-C7BB1BC704C6 - 7d559938e75421ab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in IncubatorProject.MainViewModel.getFavourites() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "816">
+               </Location>
+               <Location
+                  uuid = "6629D429-D043-4574-AE7D-C7BB1BC704C6 - 7d559938e75421ab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in IncubatorProject.MainViewModel.getFavourites() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "852">
+               </Location>
+               <Location
+                  uuid = "6629D429-D043-4574-AE7D-C7BB1BC704C6 - 2b8787a03461343"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (IncubatorProject.Message, IncubatorProject.Message) -&gt; Swift.Bool in closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in IncubatorProject.MainViewModel.getFavourites() -&gt; ()"
+                  moduleName = "IncubatorProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "140">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

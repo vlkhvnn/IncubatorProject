@@ -18,7 +18,7 @@ struct ProfileScreen: View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 12).frame(height: 52).foregroundColor(.white)
                             HStack {
-                                Text("Данные аккаунта")
+                                Text("Профиль")
                                     .foregroundColor(.black)
                                 Spacer()
                                 Image(systemName: "chevron.right")
@@ -26,11 +26,11 @@ struct ProfileScreen: View {
                             }.padding(.horizontal)
                         }
                     }
-                    NavigationLink(destination: SubscriptionView(ViewModel: ViewModel)) {
+                    NavigationLink(destination: FavouritesScreen(ViewModel: ViewModel)) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 12).frame(height: 52).foregroundColor(.white)
                             HStack {
-                                Text("Платная подписка")
+                                Text("Избранные")
                                     .foregroundColor(.black)
                                 Spacer()
                                 Image(systemName: "chevron.right")
@@ -75,7 +75,7 @@ struct ProfileScreen: View {
                             RoundedRectangle(cornerRadius: 32)
                                 .frame(height: 54)
                                 .padding()
-                                .foregroundColor(.black)
+                                .foregroundColor(.accentColor)
                             Text("Выйти с аккаунта").foregroundColor(.white)
                         }
                     }
@@ -86,8 +86,7 @@ struct ProfileScreen: View {
                 },
                       secondaryButton: .cancel(Text("Нет")))
             }
-        }
-        
+        }.navigationBarBackButtonTitleHidden().navigationTitle("Настройки")
     }
 }
 

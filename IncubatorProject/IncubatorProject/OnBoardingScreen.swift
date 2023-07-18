@@ -11,11 +11,11 @@ struct OnBoardingScreen: View {
     @Binding var screenState : AppScreenState
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Welcome to \nCarGPT").multilineTextAlignment(.leading).font(.system(size: 32)).bold()
-            Text("This app is free, sync your history across devices, and brings you the latest model improvements from OpenAI").font(.system(size: 18)).foregroundColor(Color(red: 155/255, green: 155/255, blue: 155/255))
-            hblock(headertext: "GPT can be inaccurate", text: "GPT may provide inaccurate information about people, places, or facts", imageName: "questionmark.app")
-            hblock(headertext: "Don't share sensitive info", text: "Chats may be reviewed by our AI trainers to improve our systems", imageName: "lock")
-            hblock(headertext: "Control your chat history", text: "Decide whether new chats on this device will appear in your history and be used to improve our systems", imageName: "gearshape")
+            Text("Добро пожаловать в \nCarAI").multilineTextAlignment(.leading).font(.system(size: 32)).bold()
+            Text("Это бесплатное приложение, использующее OpenAI, которое отвечает на вопросы про машины.").font(.system(size: 18)).foregroundColor(Color(red: 155/255, green: 155/255, blue: 155/255))
+            hblock(headertext: "AI может быть неточным", text: "Приложение может предоставлять неточную информацию об автомобилях, средние цены или факты.", imageName: "questionmark.app")
+            hblock(headertext: "Не делитесь конфиденциальной информацией", text: "Для улучшения искусственного интеллекта, чаты могут просматриваться компанией.", imageName: "lock")
+            hblock(headertext: "Управляйте своей историей чата и профилем", text: "Вы можете удалять историю чата и редактировать свой аккаунт.", imageName: "gearshape")
             Spacer()
             Button {
                 UserDefaults.standard.set(true, forKey: "isOnboardingSeen")
@@ -25,7 +25,7 @@ struct OnBoardingScreen: View {
                     RoundedRectangle(cornerRadius: 16)
                         .frame(height: 58)
                         .foregroundColor(Color(red: 66/255, green: 72/255, blue: 251/255))
-                    Text("Continue").foregroundColor(.white).fontWeight(.semibold)
+                    Text("Продолжить").foregroundColor(.white).fontWeight(.semibold)
                 }
             }
             

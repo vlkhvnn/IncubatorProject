@@ -12,5 +12,6 @@ struct Message : Identifiable, Codable, Hashable {
     var content : String
     var isUserMessage: Bool
     var timestamp : Date
+    var isFavourite : Bool
 }
 

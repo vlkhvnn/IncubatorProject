@@ -12,14 +12,13 @@
 		7A0370672A5329F200FB1C54 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 7A0370662A5329F200FB1C54 /* ReactiveMoya */; };
 		7A0370692A5329F200FB1C54 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 7A0370682A5329F200FB1C54 /* RxMoya */; };
 		7A03706C2A532A3D00FB1C54 /* APIservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A03706B2A532A3D00FB1C54 /* APIservice.swift */; };
+		7A3DD8AC2A655B650089DBCC /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3DD8AB2A655B650089DBCC /* CustomTextField.swift */; };
 		7A5E7A732A52BA93001D2EAD /* IncubatorProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E7A722A52BA93001D2EAD /* IncubatorProjectApp.swift */; };
 		7A5E7A772A52BA94001D2EAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A5E7A762A52BA94001D2EAD /* Assets.xcassets */; };
 		7A5E7A7A2A52BA94001D2EAD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A5E7A792A52BA94001D2EAD /* Preview Assets.xcassets */; };
 		7A5E7ABA2A52BDD9001D2EAD /* OnBoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E7AB92A52BDD9001D2EAD /* OnBoardingScreen.swift */; };
 		7A5E7ABD2A52BE30001D2EAD /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E7ABC2A52BE30001D2EAD /* MainViewModel.swift */; };
 		7A5E7AC02A52BEE7001D2EAD /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E7ABF2A52BEE7001D2EAD /* WelcomeScreen.swift */; };
-		7A5E7AC32A52BFEF001D2EAD /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E7AC22A52BFEF001D2EAD /* RegistrationView.swift */; };
-		7A5E7AC52A52C000001D2EAD /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E7AC42A52C000001D2EAD /* AuthorizationView.swift */; };
 		7A5E7ACA2A52C0FE001D2EAD /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E7AC92A52C0FE001D2EAD /* MainScreen.swift */; };
 		7A5E7ACC2A52E747001D2EAD /* FavouritesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E7ACB2A52E747001D2EAD /* FavouritesScreen.swift */; };
 		7A5E7ACE2A52E7FC001D2EAD /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E7ACD2A52E7FC001D2EAD /* ProfileScreen.swift */; };
@@ -60,6 +59,8 @@
 
 /* Begin PBXFileReference section */
 		7A03706B2A532A3D00FB1C54 /* APIservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIservice.swift; sourceTree = "<group>"; };
+		7A3DD8AB2A655B650089DBCC /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		7A3DD8AD2A65D3F30089DBCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7A5E7A6F2A52BA93001D2EAD /* IncubatorProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IncubatorProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A5E7A722A52BA93001D2EAD /* IncubatorProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncubatorProjectApp.swift; sourceTree = "<group>"; };
 		7A5E7A762A52BA94001D2EAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,8 +68,6 @@
 		7A5E7AB92A52BDD9001D2EAD /* OnBoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingScreen.swift; sourceTree = "<group>"; };
 		7A5E7ABC2A52BE30001D2EAD /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		7A5E7ABF2A52BEE7001D2EAD /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
-		7A5E7AC22A52BFEF001D2EAD /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
-		7A5E7AC42A52C000001D2EAD /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		7A5E7AC92A52C0FE001D2EAD /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		7A5E7ACB2A52E747001D2EAD /* FavouritesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesScreen.swift; sourceTree = "<group>"; };
 		7A5E7ACD2A52E7FC001D2EAD /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
@@ -149,11 +148,11 @@
 		7A5E7A712A52BA93001D2EAD /* IncubatorProject */ = {
 			isa = PBXGroup;
 			children = (
+				7A3DD8AD2A65D3F30089DBCC /* Info.plist */,
 				7AB8535E2A5EFEE800900F15 /* Models */,
 				7A5E7A722A52BA93001D2EAD /* IncubatorProjectApp.swift */,
 				7A5E7AB92A52BDD9001D2EAD /* OnBoardingScreen.swift */,
 				7A5E7ABE2A52BED5001D2EAD /* WelcomeScreen */,
-				7A5E7AC12A52BFD9001D2EAD /* Authentication */,
 				7A5E7AC82A52C0EF001D2EAD /* MainPage */,
 				7AA275E42A5C1ED100817D35 /* ProfileViews */,
 				7A5E7ABB2A52BE20001D2EAD /* ViewModel */,
@@ -186,17 +185,9 @@
 			isa = PBXGroup;
 			children = (
 				7A5E7ABF2A52BEE7001D2EAD /* WelcomeScreen.swift */,
+				7A3DD8AB2A655B650089DBCC /* CustomTextField.swift */,
 			);
 			path = WelcomeScreen;
-			sourceTree = "<group>";
-		};
-		7A5E7AC12A52BFD9001D2EAD /* Authentication */ = {
-			isa = PBXGroup;
-			children = (
-				7A5E7AC22A52BFEF001D2EAD /* RegistrationView.swift */,
-				7A5E7AC42A52C000001D2EAD /* AuthorizationView.swift */,
-			);
-			path = Authentication;
 			sourceTree = "<group>";
 		};
 		7A5E7AC82A52C0EF001D2EAD /* MainPage */ = {
@@ -347,17 +338,16 @@
 				7A5E7ACC2A52E747001D2EAD /* FavouritesScreen.swift in Sources */,
 				7A6F4F3F2A5D1DDF00653EFC /* String Extension.swift in Sources */,
 				7AA275E62A5C1EF600817D35 /* AccountInformationView.swift in Sources */,
+				7A3DD8AC2A655B650089DBCC /* CustomTextField.swift in Sources */,
 				7A5E7ACA2A52C0FE001D2EAD /* MainScreen.swift in Sources */,
 				7A5E7ABA2A52BDD9001D2EAD /* OnBoardingScreen.swift in Sources */,
 				7AA275E82A5C1FF200817D35 /* SubscriptionView.swift in Sources */,
 				7A5E7AC02A52BEE7001D2EAD /* WelcomeScreen.swift in Sources */,
 				7A6EFDA82A5FB98B002A4E85 /* FavouriteModel.swift in Sources */,
 				7A5E7ACE2A52E7FC001D2EAD /* ProfileScreen.swift in Sources */,
-				7A5E7AC52A52C000001D2EAD /* AuthorizationView.swift in Sources */,
 				7A5E7A732A52BA93001D2EAD /* IncubatorProjectApp.swift in Sources */,
 				7AB853602A5EFEF100900F15 /* MessageModel.swift in Sources */,
 				7A5E7ABD2A52BE30001D2EAD /* MainViewModel.swift in Sources */,
-				7A5E7AC32A52BFEF001D2EAD /* RegistrationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +479,7 @@
 				DEVELOPMENT_TEAM = A6SAQ5UGJF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IncubatorProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -518,6 +509,7 @@
 				DEVELOPMENT_TEAM = A6SAQ5UGJF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IncubatorProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

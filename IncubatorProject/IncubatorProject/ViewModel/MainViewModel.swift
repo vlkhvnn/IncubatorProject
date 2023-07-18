@@ -7,82 +7,103 @@
 import Moya
 import Foundation
 import SwiftUI
-import Alamofire
 import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 class MainViewModel : ObservableObject {
-    @Published var userIsAlreadyLoggedIn = false
-    @Published var userEmail = ""
-    @Published var userPassword = ""
-    @Published var userLoggedIn = false
-    @Published var inValidEmail = false
-    @Published var inValidPassword = false
-    @Published var userMessage = ""
-    @Published var isLoading = false
-    @Published var showSignOutAlert = false
-    @Published var savedUserEmail = UserDefaults.standard.string(forKey: "savedUserEmail")
-    @Published var savedUserPassword = UserDefaults.standard.string(forKey: "savedUserPassword")
-    @Published var userID = UserDefaults.standard.string(forKey: "userID")
+    //MARK: Authentication properties
+    @Published var mobileNo = ""
+    @Published var otpCode = ""
+    @Published var CLIENT_CODE = ""
+    @Published var showOTPField = false
+    
+    //MARK: Chat properties
     @Published var botResponse = ""
     @Published var messages : [Message] = []
+    @Published var favourites : [Message] = []
     @Published var savedUserMessage = ""
-    @Published var favourites : [Favourite] = []
-    @Published var showingAddFavourite = false
-    @Published var isLoadingResponse = false
+    @Published var userMessage = ""
     
-    func login() {
-        self.isLoading = true
-        Auth.auth().signIn(withEmail: userEmail, password: userPassword) { result, error in
-            if let error = error {
-                withAnimation {
-                    self.inValidPassword = true
-                    self.isLoading = false
-                    print(error.localizedDescription)
-                }
+    //MARK: Alerts
+    @Published var showSignOutAlert = false
+    @Published var showClearChatAlert = false
+    
+    
+    @Published var isLoading = false
+    @Published var userID = UserDefaults.standard.string(forKey: "userID")
+    @Published var isLoadingResponse = false
+    @Published var isMoreButtonTapped = false
+    
+    // MARK: Error properties
+    @Published var showError : Bool = false
+    @Published var errorMessage = ""
+    
+    //MARK: App Log Status
+    @Published var logStatus = UserDefaults.standard.bool(forKey: "userIsLogged")
+    
+    //MARK: Firebase API's
+    typealias Task = _Concurrency.Task
+    func getOTPCode() {
+        UIApplication.shared.closeKeyBoard()
+        Task{
+            do {
+                //MARK: Disable it when testing with Real Device
+                Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+                
+                let code = try await PhoneAuthProvider.provider().verifyPhoneNumber("+\(mobileNo)", uiDelegate: nil)
+                   
+                await MainActor.run(body: {
+                    CLIENT_CODE = code
+                    //MARK: Enabling OTP Field When It's Success
+                    withAnimation(.easeInOut) {
+                        showOTPField = true
+                    }
+                })
             }
-            if result != nil {
-                withAnimation {
-                    self.userID = Auth.auth().currentUser!.uid
-                    self.savedUserEmail = self.userEmail
-                    self.savedUserPassword = self.userPassword
-                    UserDefaults.standard.set(self.savedUserEmail, forKey: "savedUserEmail")
-                    UserDefaults.standard.set(self.userID, forKey: "userID")
-                    UserDefaults.standard.set(self.savedUserPassword, forKey: "savedUserPassword")
-                    print("success")
-                    self.isLoading = false
-                    self.userLoggedIn = true
-                }
+            catch {
+                await handleError(error: error)
+            }
+        }
+        
+    }
+    
+    func verifyOTPCode() {
+        UIApplication.shared.closeKeyBoard()
+        Task {
+            do {
+                let credential = PhoneAuthProvider.provider().credential(withVerificationID: CLIENT_CODE, verificationCode: otpCode)
+                try await Auth.auth().signIn(with: credential)
+                
+                //MARK: User logged in successfully
+                print("Success!")
+                await MainActor.run(body: {
+                    withAnimation(.easeInOut) {
+                        logStatus = true
+                        userID = Auth.auth().currentUser!.uid
+                        UserDefaults.standard.set(self.userID, forKey: "userID")
+                        UserDefaults.standard.set(true, forKey: "userIsLogged")
+                        isLoading = false
+                    }
+                })
+            }
+            catch {
+                await handleError(error: error)
             }
         }
     }
     
-    func register() {
-        self.isLoading = true
-        Auth.auth().createUser(withEmail: self.userEmail, password: self.userPassword) { result, error in
-            if error != nil {
-                print(error!.localizedDescription)
-                self.inValidEmail = true
-                self.isLoading = false
-            }
-            if let result = result {
-                self.userID = Auth.auth().currentUser!.uid
-                self.savedUserEmail = self.userEmail
-                self.savedUserPassword = self.userPassword
-                UserDefaults.standard.set(self.savedUserEmail, forKey: "savedUserEmail")
-                UserDefaults.standard.set(self.userID, forKey: "userID")
-                UserDefaults.standard.set(self.savedUserPassword, forKey: "savedUserPassword")
-                self.isLoading = false
-                self.userLoggedIn = true
-            }
-        }
+    func handleError(error: Error) async {
+        await MainActor.run(body: {
+            errorMessage = error.localizedDescription
+            showError.toggle()
+        })
     }
     
     func getMessages() {
         self.messages.removeAll()
         let db = Firestore.firestore()
-        let ref = db.collection("Users").document(Auth.auth().currentUser!.uid).collection("messages")
+        let ref = db.collection("Users").document(userID!).collection("messages")
         ref.addSnapshotListener { querySnapshot, error in
             guard let documents = querySnapshot?.documents else {
                 print("Error fetching documents: \(String(describing: error))")
@@ -109,26 +130,80 @@ class MainViewModel : ObservableObject {
     func getFavourites() {
         self.favourites.removeAll()
         let db = Firestore.firestore()
-        let ref = db.collection("Users").document(Auth.auth().currentUser!.uid).collection("favourties")
-        ref.addSnapshotListener { querySnapshot, error in
+        let ref = db.collection("Users").document(userID!).collection("messages")
+        ref.whereField("isFavourite", isEqualTo: true).getDocuments { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
-                print("Error fetching documents: \(String(describing: error))")
+                print("Error fetching documents: \(error?.localizedDescription ?? "Unknown error")")
                 return
             }
-            self.favourites = documents.compactMap { document -> Favourite? in
-                do {
-                    // Converting each document into the Message model
-                    // Note that data(as:) is a function available only in FirebaseFirestoreSwift package - remember to import it at the top
-                    return try document.data(as: Favourite.self)
-                } catch {
-                    // If we run into an error, print the error in the console
-                    print("Error decoding document into Message: \(error)")
-                    
-                    // Return nil if we run into an error - but the compactMap will not include it in the final array
-                    return nil
+            for document in documents {
+                let data = document.data()
+                let id = document.documentID
+                let content = data["content"] as? String ?? ""
+                let isUserMessage = data["isUserMessage"] as? Bool ?? false
+                let isFavourite = data["image"] as? Bool ?? true
+                let timestamp = data["timestamp"] as? Timestamp ?? Timestamp()
+                let message = Message(content: content, isUserMessage: isUserMessage, timestamp: timestamp.dateValue(), isFavourite: isFavourite)
+                self.favourites.append(message)
+                print(message.timestamp)
+            }
+            self.favourites.sort { $0.timestamp < $1.timestamp }
+        }
+        
+    }
+    
+    func updateFavoriteStatus(message: Message) {
+        let db = Firestore.firestore()
+        let collectionRef = db.collection("Users").document(userID!).collection("messages")
+        
+        collectionRef.whereField("id", isEqualTo: message.id.description).getDocuments { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("Error fetching documents: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+            
+            guard let document = documents.first else {
+                print("No matching documents found")
+                return
+            }
+            
+            let documentRef = collectionRef.document(document.documentID)
+            documentRef.updateData(["isFavourite": self.messages[self.getMessageIndex(message: message)].isFavourite]) { error in
+                if let error = error {
+                    print("Error updating favorite status: \(error)")
+                } else {
+                    print(document.documentID)
+                    print(message.id.description)
+                    print("Favorite status updated successfully!")
                 }
             }
         }
+    }
+
+    func deleteChat() {
+        let db = Firestore.firestore()
+        let collectionRef = db.collection("Users").document(userID!).collection("messages")
+        collectionRef.getDocuments { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("Error fetching documents: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+            
+            let batch = collectionRef.firestore.batch()
+            
+            for document in documents {
+                batch.deleteDocument(document.reference)
+            }
+            
+            batch.commit { error in
+                if let error = error {
+                    print("Error deleting chat: \(error)")
+                } else {
+                    print("Chat deleted successfully!")
+                }
+            }
+        }
+        self.messages.removeAll()
     }
     
     func sendMessage() {
@@ -143,9 +218,8 @@ class MainViewModel : ObservableObject {
                     let unquotedString = string.trimmingCharacters(in: CharacterSet(charactersIn: "\""))
                     let newstring = unquotedString.replacingOccurrences(of: "\\n", with: "\n")
                     botResponse = newstring
-                    self.messages.append(Message(content: botResponse, isUserMessage: false,timestamp: Date()))
                     self.addBotMessageToFirestore(text: newstring)
-                    print(botResponse)
+                    self.messages.append(Message(content: botResponse, isUserMessage: false,timestamp: Date(), isFavourite: false))
                     print("Answer is successfully received!")
                 }
             case .failure:
@@ -156,9 +230,9 @@ class MainViewModel : ObservableObject {
     
     func addUserMessageToFirestore() {
         let db = Firestore.firestore()
-        let ref = db.collection("Users").document(Auth.auth().currentUser!.uid)
+        let ref = db.collection("Users").document(userID!)
         do {
-            let newMessage = Message(content: self.savedUserMessage, isUserMessage: true, timestamp: Date())
+            let newMessage = Message(content: self.savedUserMessage, isUserMessage: true, timestamp: Date(), isFavourite: false)
             try ref.collection("messages").document().setData(from: newMessage)
             
         } catch {
@@ -169,9 +243,9 @@ class MainViewModel : ObservableObject {
     
     func addBotMessageToFirestore(text: String) {
         let db = Firestore.firestore()
-        let ref = db.collection("Users").document(Auth.auth().currentUser!.uid)
+        let ref = db.collection("Users").document(userID!)
         do {
-            let newMessage = Message(content: text, isUserMessage: false, timestamp: Date())
+            let newMessage = Message(content: text, isUserMessage: false, timestamp: Date(), isFavourite: false)
             try ref.collection("messages").document().setData(from: newMessage)
             
         } catch {
@@ -182,7 +256,7 @@ class MainViewModel : ObservableObject {
     
     func addFavouritesToFirestore(model: String, mark: String, city: String) {
         let db = Firestore.firestore()
-        let ref = db.collection("Users").document(Auth.auth().currentUser!.uid)
+        let ref = db.collection("Users").document(userID!)
         do {
             let newFavourite = Favourite(model: model, mark: mark, city: city)
             try ref.collection("favourties").document().setData(from: newFavourite)
@@ -206,16 +280,36 @@ class MainViewModel : ObservableObject {
     }
     
     func signOut() {
-        userLoggedIn = false
+        logStatus = false
+        userID = ""
+        UserDefaults.standard.set(self.userID, forKey: "userID")
+        UserDefaults.standard.set(false, forKey: "userIsLogged")
         userMessage = ""
     }
     
     func ButtonTap() {
-        self.messages.append(Message(content: self.userMessage, isUserMessage: true, timestamp: Date()))
+        self.messages.append(Message(content: self.userMessage, isUserMessage: true, timestamp: Date(), isFavourite: false))
         self.isLoadingResponse = true
         self.savedUserMessage = self.userMessage
         self.userMessage = ""
         self.addUserMessageToFirestore()
         self.sendMessage()
+    }
+    
+    func getMessageIndex(message: Message) -> Int {
+        if let index = self.messages.firstIndex(where: { $0.id == message.id }) {
+            return index
+        }
+        return -1
+    }
+}
+
+
+//MARK: Extensions
+
+extension UIApplication {
+    func closeKeyBoard() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        
     }
 }

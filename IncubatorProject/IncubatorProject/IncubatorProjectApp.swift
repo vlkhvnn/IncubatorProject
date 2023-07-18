@@ -14,11 +14,11 @@ enum AppScreenState {
 
 @main
 struct IncubatorProject: App {
-    @State var screenstate : AppScreenState
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @State var screenstate : AppScreenState = .onboarding
     private let app = MainViewModel()
-    var isOnboardingSeen : Bool
+    @State var isOnboardingSeen : Bool = false
     init() {
-        FirebaseApp.configure()
         self.isOnboardingSeen = UserDefaults.standard.bool(forKey: "isOnboardingSeen")
         switch isOnboardingSeen {
         case true:
@@ -36,5 +36,18 @@ struct IncubatorProject: App {
                 WelcomeScreen(ViewModel: app)
             }
         }
+    }
+}
+
+//MARK: Firebase Initialization
+class AppDelegate : NSObject, UIApplicationDelegate {
+    var isOnboardingSeen : Bool = false
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        FirebaseApp.configure()
+        return true
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) async -> UIBackgroundFetchResult {
+        return .noData
     }
 }
