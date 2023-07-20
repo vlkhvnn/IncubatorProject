@@ -44,6 +44,7 @@ struct MainScreen: View {
                                     }
                                     
                                 }
+                               
                                 if ViewModel.isLoadingResponse {
                                     HStack {
                                         Text("Подождите, бот генерирует ответ...")

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import iPhoneNumberField
 
 struct WelcomeScreen: View {
     @StateObject var ViewModel : MainViewModel
@@ -23,11 +24,11 @@ struct WelcomeScreen: View {
                     Text("CarAI").font(.title)
                         .foregroundColor(.indigo)
                     Spacer().frame(height: 15)
-                    Text("Войдите с использование номера телефона чтобы продолжить")
+                    Text("Войдите с помощью номера телефона чтобы продолжить")
                         .font(.system(size: 16)).foregroundColor(.gray)
                 }.fontWeight(.semibold)
-                
-                CustomTextField(hint: "Номер Телефона", text: $ViewModel.mobileNo)
+                    
+                PhoneTextField(hint: "(700) 697-9370", text: $ViewModel.mobileNo)
                     .disabled(ViewModel.showOTPField)
                     .opacity(ViewModel.showOTPField ? 0.4 : 1)
                     .overlay(alignment: .trailing,content: {
@@ -43,7 +44,9 @@ struct WelcomeScreen: View {
                         .opacity(ViewModel.showOTPField ? 1 : 0)
                         .padding(.trailing, 15)
                     })
-                    .padding(.top, 50)
+                    .padding(.top, 40)
+                    
+                    
                 CustomTextField(hint: "Код", text: $ViewModel.otpCode)
                     .disabled(!ViewModel.showOTPField)
                     .opacity(!ViewModel.showOTPField ? 0.4 : 1)

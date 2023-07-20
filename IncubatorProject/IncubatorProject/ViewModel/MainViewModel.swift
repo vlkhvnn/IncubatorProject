@@ -29,9 +29,12 @@ class MainViewModel : ObservableObject {
     @Published var showSignOutAlert = false
     @Published var showClearChatAlert = false
     
+    //MARK: User Info
+    @Published var userID = UserDefaults.standard.string(forKey: "userID")
+    @Published var userPhone = UserDefaults.standard.string(forKey: "userPhone")
+    @Published var userName = UserDefaults.standard.string(forKey: "userName")
     
     @Published var isLoading = false
-    @Published var userID = UserDefaults.standard.string(forKey: "userID")
     @Published var isLoadingResponse = false
     @Published var isMoreButtonTapped = false
     
@@ -51,9 +54,11 @@ class MainViewModel : ObservableObject {
                 //MARK: Disable it when testing with Real Device
                 Auth.auth().settings?.isAppVerificationDisabledForTesting = true
                 
-                let code = try await PhoneAuthProvider.provider().verifyPhoneNumber("+\(mobileNo)", uiDelegate: nil)
-                   
+                let code = try await PhoneAuthProvider.provider().verifyPhoneNumber("+7 \(mobileNo)", uiDelegate: nil)
+                print(mobileNo)
                 await MainActor.run(body: {
+                    userPhone = "+7 \(mobileNo)"
+                    UserDefaults.standard.set(self.userPhone, forKey: "userPhone")
                     CLIENT_CODE = code
                     //MARK: Enabling OTP Field When It's Success
                     withAnimation(.easeInOut) {
@@ -213,6 +218,10 @@ class MainViewModel : ObservableObject {
         ) { [self] result in
             switch result {
             case let .success(response):
+                if response.statusCode != 200 {
+                    self.isLoadingResponse = false
+                    self.handleResponseError()
+                }
                 if let string = String(data: response.data, encoding: .utf8) {
                     self.isLoadingResponse = false
                     let unquotedString = string.trimmingCharacters(in: CharacterSet(charactersIn: "\""))
@@ -220,12 +229,17 @@ class MainViewModel : ObservableObject {
                     botResponse = newstring
                     self.addBotMessageToFirestore(text: newstring)
                     self.messages.append(Message(content: botResponse, isUserMessage: false,timestamp: Date(), isFavourite: false))
-                    print("Answer is successfully received!")
                 }
             case .failure:
                 break
             }
         }
+    }
+    
+    func handleResponseError() {
+        var errorMessage = "Запрос на сервес был очень долгим. Это происходит из за того, что бот не понял ваше сообщение: Сообщение пользователя было на нескольких языках или не связана с машинами."
+        self.addBotMessageToFirestore(text: errorMessage)
+        self.messages.append(Message(content: errorMessage, isUserMessage: false,timestamp: Date(), isFavourite: false))
     }
     
     func addUserMessageToFirestore() {
@@ -280,6 +294,10 @@ class MainViewModel : ObservableObject {
     }
     
     func signOut() {
+        mobileNo = ""
+        showOTPField = false
+        otpCode = ""
+        CLIENT_CODE = ""
         logStatus = false
         userID = ""
         UserDefaults.standard.set(self.userID, forKey: "userID")

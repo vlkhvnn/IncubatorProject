@@ -18,8 +18,8 @@ struct OnBoardingScreen: View {
             hblock(headertext: "Управляйте своей историей чата и профилем", text: "Вы можете удалять историю чата и редактировать свой аккаунт.", imageName: "gearshape")
             Spacer()
             Button {
-                UserDefaults.standard.set(true, forKey: "isOnboardingSeen")
                 screenState = .main
+                UserDefaults.standard.set(true, forKey: "isOnboardingSeen")
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 16)

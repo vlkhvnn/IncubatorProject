@@ -10,10 +10,18 @@ import SwiftUI
 struct FavouritesScreen: View {
     @ObservedObject var ViewModel : MainViewModel
     var body: some View {
-        favouriteChat.onAppear {
-            ViewModel.getFavourites()
+        if ViewModel.favourites.isEmpty {
+            Text("Пока у вас нет Избранных сообщений. Нажмите на форму сердца рядом с сообщением, чтобы добавить сообщение в Избранные")
+                .padding()
+                .multilineTextAlignment(.center)
+                .navigationBarBackButtonTitleHidden().navigationTitle("Избранные сообщения")
         }
-        .navigationBarBackButtonTitleHidden().navigationTitle("Избранные сообщения")
+        else {
+            favouriteChat.onAppear {
+                ViewModel.getFavourites()
+            }.navigationBarBackButtonTitleHidden().navigationTitle("Избранные сообщения")
+        }
+        
     }
     var favouriteChat : some View {
         ScrollView {

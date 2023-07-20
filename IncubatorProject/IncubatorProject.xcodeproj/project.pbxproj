@@ -13,6 +13,7 @@
 		7A0370692A5329F200FB1C54 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 7A0370682A5329F200FB1C54 /* RxMoya */; };
 		7A03706C2A532A3D00FB1C54 /* APIservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A03706B2A532A3D00FB1C54 /* APIservice.swift */; };
 		7A3DD8AC2A655B650089DBCC /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3DD8AB2A655B650089DBCC /* CustomTextField.swift */; };
+		7A3DD8B02A67C3D10089DBCC /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = 7A3DD8AF2A67C3D10089DBCC /* iPhoneNumberField */; };
 		7A5E7A732A52BA93001D2EAD /* IncubatorProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E7A722A52BA93001D2EAD /* IncubatorProjectApp.swift */; };
 		7A5E7A772A52BA94001D2EAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A5E7A762A52BA94001D2EAD /* Assets.xcassets */; };
 		7A5E7A7A2A52BA94001D2EAD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A5E7A792A52BA94001D2EAD /* Preview Assets.xcassets */; };
@@ -85,6 +86,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A6F4F582A5D350C00653EFC /* FirebaseDatabaseSwift in Frameworks */,
+				7A3DD8B02A67C3D10089DBCC /* iPhoneNumberField in Frameworks */,
 				7A0370652A5329F200FB1C54 /* Moya in Frameworks */,
 				7A6F4F702A5D350C00653EFC /* FirebasePerformance in Frameworks */,
 				7A6F4F722A5D350C00653EFC /* FirebaseRemoteConfig in Frameworks */,
@@ -274,6 +276,7 @@
 				7A6F4F732A5D350C00653EFC /* FirebaseRemoteConfigSwift */,
 				7A6F4F752A5D350C00653EFC /* FirebaseStorage */,
 				7A6F4F772A5D350C00653EFC /* FirebaseStorageCombine-Community */,
+				7A3DD8AF2A67C3D10089DBCC /* iPhoneNumberField */,
 			);
 			productName = IncubatorProject;
 			productReference = 7A5E7A6F2A52BA93001D2EAD /* IncubatorProject.app */;
@@ -306,6 +309,7 @@
 			packageReferences = (
 				7A0370612A5329F100FB1C54 /* XCRemoteSwiftPackageReference "Moya" */,
 				7A6F4F422A5D350C00653EFC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				7A3DD8AE2A67C3D10089DBCC /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
 			);
 			productRefGroup = 7A5E7A702A52BA93001D2EAD /* Products */;
 			projectDirPath = "";
@@ -560,6 +564,14 @@
 				minimumVersion = 15.0.0;
 			};
 		};
+		7A3DD8AE2A67C3D10089DBCC /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MojtabaHs/iPhoneNumberField";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.1;
+			};
+		};
 		7A6F4F422A5D350C00653EFC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -590,6 +602,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7A0370612A5329F100FB1C54 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = RxMoya;
+		};
+		7A3DD8AF2A67C3D10089DBCC /* iPhoneNumberField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7A3DD8AE2A67C3D10089DBCC /* XCRemoteSwiftPackageReference "iPhoneNumberField" */;
+			productName = iPhoneNumberField;
 		};
 		7A6F4F432A5D350C00653EFC /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

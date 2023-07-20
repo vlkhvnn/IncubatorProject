@@ -72,7 +72,7 @@ struct ProfileScreen: View {
                         ViewModel.showSignOutAlert = true
                     } label: {
                         ZStack {
-                            RoundedRectangle(cornerRadius: 32)
+                            RoundedRectangle(cornerRadius: 20)
                                 .frame(height: 54)
                                 .padding()
                                 .foregroundColor(.accentColor)

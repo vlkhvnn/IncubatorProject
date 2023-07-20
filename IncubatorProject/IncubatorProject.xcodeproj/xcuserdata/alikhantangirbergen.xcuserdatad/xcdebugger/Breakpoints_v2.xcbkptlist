@@ -30,8 +30,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
             landmarkName = "addUserMessageToFirestore()"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
             landmarkName = "addUserMessageToFirestore()"
             landmarkType = "7">
             <Locations>
@@ -94,8 +94,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "getOTPCode()"
             landmarkType = "7">
             <Locations>
@@ -142,8 +142,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "getOTPCode()"
             landmarkType = "7">
             <Locations>
@@ -235,8 +235,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "getOTPCode()"
             landmarkType = "7">
             <Locations>
@@ -343,8 +343,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "303"
-            endingLineNumber = "303"
+            startingLineNumber = "321"
+            endingLineNumber = "321"
             landmarkName = "getMessageIndex(message:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -359,8 +359,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "updateFavoriteStatus(message:)"
             landmarkType = "7">
             <Locations>
@@ -407,8 +407,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "updateFavoriteStatus(message:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -423,8 +423,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
             landmarkName = "updateFavoriteStatus(message:)"
             landmarkType = "7">
             <Locations>
@@ -471,8 +471,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "updateFavoriteStatus(message:)"
             landmarkType = "7">
             <Locations>
@@ -519,8 +519,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "getFavourites()"
             landmarkType = "7">
          </BreakpointContent>
@@ -535,8 +535,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "getFavourites()"
             landmarkType = "7">
             <Locations>
@@ -583,8 +583,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "getFavourites()"
             landmarkType = "7">
          </BreakpointContent>
@@ -599,8 +599,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "getFavourites()"
             landmarkType = "7">
          </BreakpointContent>
@@ -615,8 +615,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "getFavourites()"
             landmarkType = "7">
          </BreakpointContent>
@@ -631,8 +631,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
             landmarkName = "getFavourites()"
             landmarkType = "7">
             <Locations>
@@ -679,8 +679,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "getFavourites()"
             landmarkType = "7">
             <Locations>
