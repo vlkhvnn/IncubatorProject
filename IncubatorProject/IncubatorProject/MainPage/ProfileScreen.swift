@@ -14,18 +14,6 @@ struct ProfileScreen: View {
             ZStack {
                 Color(red: 246/255, green: 246/255, blue: 246/255).ignoresSafeArea()
                 VStack(spacing: 16) {
-                    NavigationLink(destination: AccountInformationView(ViewModel: ViewModel)) {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12).frame(height: 52).foregroundColor(.white)
-                            HStack {
-                                Text("Профиль")
-                                    .foregroundColor(.black)
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                                    .foregroundColor(Color(red: 0.24, green: 0.24, blue: 0.26)).opacity(0.3)
-                            }.padding(.horizontal)
-                        }
-                    }
                     NavigationLink(destination: FavouritesScreen(ViewModel: ViewModel)) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 12).frame(height: 52).foregroundColor(.white)
@@ -86,7 +74,12 @@ struct ProfileScreen: View {
                 },
                       secondaryButton: .cancel(Text("Нет")))
             }
-        }.navigationBarBackButtonTitleHidden().navigationTitle("Настройки")
+        }
+        .onAppear {
+            ViewModel.isMoreButtonTapped = false
+        }
+        .navigationBarBackButtonTitleHidden()
+        .navigationTitle("Настройки")
     }
 }
 

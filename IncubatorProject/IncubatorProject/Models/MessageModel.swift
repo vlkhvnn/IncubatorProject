@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Message : Identifiable, Codable, Hashable {
+struct MessageStruct : Identifiable, Codable, Hashable {
     var id = UUID()
     var content : String
     var isUserMessage: Bool
@@ -15,3 +15,7 @@ struct Message : Identifiable, Codable, Hashable {
     var isFavourite : Bool
 }
 
+struct City: Identifiable {
+    var id = UUID()
+    var name : String
+}

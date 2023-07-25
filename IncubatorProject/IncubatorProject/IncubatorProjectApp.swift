@@ -15,18 +15,16 @@ enum AppScreenState {
 @main
 struct IncubatorProject: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @State var screenstate : AppScreenState = .onboarding
-    private let app = MainViewModel()
-    @State var isOnboardingSeen : Bool = false
-    init() {
-        self.isOnboardingSeen = UserDefaults.standard.bool(forKey: "isOnboardingSeen")
-        switch isOnboardingSeen {
-        case true:
-            self.screenstate = .main
-        case false:
-            self.screenstate = .onboarding
+    @State private var screenstate: AppScreenState = {
+        let isOnboardingSeen = UserDefaults.standard.bool(forKey: "isOnboardingSeen")
+        if isOnboardingSeen {
+            return .main
+        } else {
+            return .onboarding
         }
-    }
+    }()
+    private let app = MainViewModel()
+    
     var body: some Scene {
         WindowGroup {
             switch screenstate {

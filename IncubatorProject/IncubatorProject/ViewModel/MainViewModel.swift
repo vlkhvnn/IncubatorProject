@@ -20,8 +20,8 @@ class MainViewModel : ObservableObject {
     
     //MARK: Chat properties
     @Published var botResponse = ""
-    @Published var messages : [Message] = []
-    @Published var favourites : [Message] = []
+    @Published var messages : [MessageStruct] = []
+    @Published var favourites : [MessageStruct] = []
     @Published var savedUserMessage = ""
     @Published var userMessage = ""
     
@@ -33,11 +33,11 @@ class MainViewModel : ObservableObject {
     @Published var userID = UserDefaults.standard.string(forKey: "userID")
     @Published var userPhone = UserDefaults.standard.string(forKey: "userPhone")
     @Published var userName = UserDefaults.standard.string(forKey: "userName")
+    @Published var chosenCity = UserDefaults.standard.string(forKey: "chosenCity")
     
     @Published var isLoading = false
     @Published var isLoadingResponse = false
     @Published var isMoreButtonTapped = false
-    
     // MARK: Error properties
     @Published var showError : Bool = false
     @Published var errorMessage = ""
@@ -45,6 +45,21 @@ class MainViewModel : ObservableObject {
     //MARK: App Log Status
     @Published var logStatus = UserDefaults.standard.bool(forKey: "userIsLogged")
     
+    
+    
+    //MARK: Cities
+    var cities : [City] = [
+        City(name: "Алматы"),
+        City(name: "Астана"),
+        City(name: "Тараз"),
+        City(name: "Шымкент"),
+        City(name: "Конаев"),
+        City(name: "Павлодар"),
+        City(name: "Актау"),
+        City(name: "Атырау"),
+        City(name: "Семей"),
+        City(name: "Караганды")
+    ]
     //MARK: Firebase API's
     typealias Task = _Concurrency.Task
     func getOTPCode() {
@@ -52,7 +67,7 @@ class MainViewModel : ObservableObject {
         Task{
             do {
                 //MARK: Disable it when testing with Real Device
-                Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+                Auth.auth().settings?.isAppVerificationDisabledForTesting = false
                 
                 let code = try await PhoneAuthProvider.provider().verifyPhoneNumber("+7 \(mobileNo)", uiDelegate: nil)
                 print(mobileNo)
@@ -114,11 +129,11 @@ class MainViewModel : ObservableObject {
                 print("Error fetching documents: \(String(describing: error))")
                 return
             }
-            self.messages = documents.compactMap { document -> Message? in
+            self.messages = documents.compactMap { document -> MessageStruct? in
                 do {
                     // Converting each document into the Message model
                     // Note that data(as:) is a function available only in FirebaseFirestoreSwift package - remember to import it at the top
-                    return try document.data(as: Message.self)
+                    return try document.data(as: MessageStruct.self)
                 } catch {
                     // If we run into an error, print the error in the console
                     print("Error decoding document into Message: \(error)")
@@ -148,7 +163,7 @@ class MainViewModel : ObservableObject {
                 let isUserMessage = data["isUserMessage"] as? Bool ?? false
                 let isFavourite = data["image"] as? Bool ?? true
                 let timestamp = data["timestamp"] as? Timestamp ?? Timestamp()
-                let message = Message(content: content, isUserMessage: isUserMessage, timestamp: timestamp.dateValue(), isFavourite: isFavourite)
+                let message = MessageStruct(content: content, isUserMessage: isUserMessage, timestamp: timestamp.dateValue(), isFavourite: isFavourite)
                 self.favourites.append(message)
                 print(message.timestamp)
             }
@@ -157,10 +172,9 @@ class MainViewModel : ObservableObject {
         
     }
     
-    func updateFavoriteStatus(message: Message) {
+    func updateFavoriteStatus(message: MessageStruct) {
         let db = Firestore.firestore()
         let collectionRef = db.collection("Users").document(userID!).collection("messages")
-        
         collectionRef.whereField("id", isEqualTo: message.id.description).getDocuments { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("Error fetching documents: \(error?.localizedDescription ?? "Unknown error")")
@@ -213,8 +227,12 @@ class MainViewModel : ObservableObject {
     
     func sendMessage() {
         let provider = MoyaProvider<APIService>()
+        
+        if chosenCity != "" {
+            self.savedUserMessage += ". В городе \(self.chosenCity)"
+        }
         provider.request(
-            .sendMessage(message: self.userMessage, chat_history: self.convertChatToString())
+            .sendMessage(message: self.savedUserMessage, chat_history: self.convertChatToString())
         ) { [self] result in
             switch result {
             case let .success(response):
@@ -228,7 +246,7 @@ class MainViewModel : ObservableObject {
                     let newstring = unquotedString.replacingOccurrences(of: "\\n", with: "\n")
                     botResponse = newstring
                     self.addBotMessageToFirestore(text: newstring)
-                    self.messages.append(Message(content: botResponse, isUserMessage: false,timestamp: Date(), isFavourite: false))
+                    self.messages.append(MessageStruct(content: botResponse, isUserMessage: false,timestamp: Date(), isFavourite: false))
                 }
             case .failure:
                 break
@@ -239,14 +257,14 @@ class MainViewModel : ObservableObject {
     func handleResponseError() {
         var errorMessage = "Запрос на сервес был очень долгим. Это происходит из за того, что бот не понял ваше сообщение: Сообщение пользователя было на нескольких языках или не связана с машинами."
         self.addBotMessageToFirestore(text: errorMessage)
-        self.messages.append(Message(content: errorMessage, isUserMessage: false,timestamp: Date(), isFavourite: false))
+        self.messages.append(MessageStruct(content: errorMessage, isUserMessage: false,timestamp: Date(), isFavourite: false))
     }
     
     func addUserMessageToFirestore() {
         let db = Firestore.firestore()
         let ref = db.collection("Users").document(userID!)
         do {
-            let newMessage = Message(content: self.savedUserMessage, isUserMessage: true, timestamp: Date(), isFavourite: false)
+            let newMessage = MessageStruct(content: self.savedUserMessage, isUserMessage: true, timestamp: Date(), isFavourite: false)
             try ref.collection("messages").document().setData(from: newMessage)
             
         } catch {
@@ -259,7 +277,7 @@ class MainViewModel : ObservableObject {
         let db = Firestore.firestore()
         let ref = db.collection("Users").document(userID!)
         do {
-            let newMessage = Message(content: text, isUserMessage: false, timestamp: Date(), isFavourite: false)
+            let newMessage = MessageStruct(content: text, isUserMessage: false, timestamp: Date(), isFavourite: false)
             try ref.collection("messages").document().setData(from: newMessage)
             
         } catch {
@@ -306,7 +324,7 @@ class MainViewModel : ObservableObject {
     }
     
     func ButtonTap() {
-        self.messages.append(Message(content: self.userMessage, isUserMessage: true, timestamp: Date(), isFavourite: false))
+        self.messages.append(MessageStruct(content: self.userMessage, isUserMessage: true, timestamp: Date(), isFavourite: false))
         self.isLoadingResponse = true
         self.savedUserMessage = self.userMessage
         self.userMessage = ""
@@ -314,7 +332,7 @@ class MainViewModel : ObservableObject {
         self.sendMessage()
     }
     
-    func getMessageIndex(message: Message) -> Int {
+    func getMessageIndex(message: MessageStruct) -> Int {
         if let index = self.messages.firstIndex(where: { $0.id == message.id }) {
             return index
         }

@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct MainScreen: View {
+    @Environment(\.managedObjectContext) var moc
     @ObservedObject var ViewModel : MainViewModel
-    @State private var markdownText = ""
+    
     var body: some View {
-        chat.onAppear {
-            ViewModel.getMessages()
+        NavigationView {
+            chat.onAppear {
+                ViewModel.getMessages()
+            }
         }
     }
     var chat : some View {
@@ -40,11 +43,10 @@ struct MainScreen: View {
                                         
                                     }
                                     else {
-                                        UserMessage(message: message)
+                                        UserMessage(ViewModel: ViewModel, message: message)
                                     }
                                     
                                 }
-                               
                                 if ViewModel.isLoadingResponse {
                                     HStack {
                                         Text("Подождите, бот генерирует ответ...")
@@ -91,7 +93,7 @@ struct MainScreen: View {
                     NavigationLink(destination: ProfileScreen(ViewModel: ViewModel))
                     {
                         HStack {
-                            Text("Настройки")
+                            Text("Еще")
                             Spacer()
                             Image(systemName: "gearshape")
                         }.padding(.horizontal)
@@ -116,7 +118,7 @@ struct MainScreen: View {
 
 struct BotMessage : View {
     @ObservedObject var ViewModel : MainViewModel
-    var message: Message
+    var message: MessageStruct
     var body: some View {
         HStack {
             Text(.init(message.content))
@@ -148,7 +150,8 @@ struct BotMessage : View {
 }
 
 struct UserMessage: View {
-    var message : Message
+    @ObservedObject var ViewModel : MainViewModel
+    var message : MessageStruct
     var body: some View {
         HStack {
             Spacer()
@@ -167,8 +170,16 @@ struct UserMessage: View {
 struct TitleRow: View {
     @ObservedObject var ViewModel : MainViewModel
     var body: some View {
-        HStack(alignment: .bottom, spacing: 20) {
-            Image("carai-logo").resizable().frame(width: 52, height: 52).scaledToFit()
+        HStack(alignment: .bottom, spacing: 10) {
+            NavigationLink(destination: CitiesView(ViewModel: ViewModel)) {
+                ZStack(alignment: .top) {
+                    Image("gps_logo").resizable().frame(width: 30, height: 30)
+                        .scaledToFit()
+                        .foregroundColor(.accentColor)
+                }.padding(.bottom, 6)
+            }
+            
+            
             VStack(alignment: .leading) {
                 Text("CarAI")
                     .font(.system(size: 24)).bold()
@@ -206,9 +217,11 @@ struct BottomRow: View {
                 } label: {
                         Image(systemName: "arrow.up")
                             .resizable().frame(width: 15, height: 20)
-                }.disabled(ViewModel.isLoadingResponse)
+                }.disabled(ViewModel.isLoadingResponse).disabled(ViewModel.userMessage == "")
             }.onSubmit {
-                ViewModel.ButtonTap()
+                if ViewModel.userMessage != "" {
+                    ViewModel.ButtonTap()
+                }
             }
             .padding()
         }.frame(height: 60)

@@ -16,13 +16,10 @@ struct WelcomeScreen: View {
         }
         else {
             VStack(alignment: .leading,spacing: 16) {
-                Image(systemName: "triangle")
-                    .font(.system(size: 38))
-                    .foregroundColor(.indigo)
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Добро пожаловать в ").font(.title)
                     Text("CarAI").font(.title)
-                        .foregroundColor(.indigo)
+                        .foregroundColor(.accentColor)
                     Spacer().frame(height: 15)
                     Text("Войдите с помощью номера телефона чтобы продолжить")
                         .font(.system(size: 16)).foregroundColor(.gray)
