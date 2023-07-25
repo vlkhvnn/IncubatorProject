@@ -12,10 +12,10 @@ struct OnBoarding2: View {
     var body: some View {
         VStack(alignment: .leading) {
             Spacer()
-            Image("screenshot").resizable().scaledToFit().padding(.leading, -16)
+            Image("screenshot").resizable().scaledToFit().padding(.leading, -16).shadow(radius: 6)
             Spacer()
             Text("Начать чат🚀").font(.title).padding(.vertical)
-            Text("CarAI предоставляет передовое использование ИИ на вашем 📲")
+            Text("CarAI предоставляет передовое использование ИИ на вашем 📲").padding(.bottom)
             Button {
                 withAnimation {
                     screenState = .main

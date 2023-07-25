@@ -17,9 +17,13 @@ struct OnBoardingScreen: View {
     var body: some View {
         if screenpage == .first {
             VStack(alignment: .leading, spacing: 16) {
-                Text("Добро пожаловать в \nCarAI").multilineTextAlignment(.leading).font(.system(size: 32)).bold()
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Добро пожаловать в ")
+                    Text("CarAI").foregroundColor(.accentColor)
+                }.multilineTextAlignment(.leading).font(.system(size: 32)).bold()
+                
                 Text("Это бесплатное приложение, использующее OpenAI, которое отвечает на вопросы про машины.").font(.system(size: 18)).foregroundColor(Color(red: 155/255, green: 155/255, blue: 155/255))
-                hblock(headertext: "AI может быть неточным", text: "Приложение может предоставлять неточную информацию об автомобилях, средние цены или факты.", imageName: "questionmark.app")
+                hblock(headertext: "AI может быть неточным", text: "Приложение может предоставлять неточную информацию об автомобилях, средние цены или факты. ИИ базируется на информации до 2021 года", imageName: "questionmark.app")
                 hblock(headertext: "Не делитесь конфиденциальной информацией", text: "Для улучшения искусственного интеллекта, чаты могут просматриваться компанией.", imageName: "lock")
                 hblock(headertext: "Управляйте своей историей чата и профилем", text: "Вы можете удалять историю чата, сохранять сообщения в избранные и редактировать свой аккаунт.", imageName: "gearshape")
                 Spacer()

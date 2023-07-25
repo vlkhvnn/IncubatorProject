@@ -15,13 +15,17 @@ struct PhoneTextField: View {
     @FocusState var isEnabled: Bool
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
-            iPhoneNumberField(hint, text: $text)
-                .font(UIFont(size: 17, weight: .light, design: .monospaced))
-                .clearButtonMode(.whileEditing)
-                .placeholderColor(Color(.blue))
-                .prefixHidden(false)
-                .maximumDigits(10)
-                .focused($isEnabled)
+            HStack {
+                Text("+7 ")
+                iPhoneNumberField(hint, text: $text)
+                    .font(UIFont(size: 17, weight: .light, design: .monospaced))
+                    .clearButtonMode(.whileEditing)
+                    .placeholderColor(Color(.blue))
+                    .prefixHidden(false)
+                    .maximumDigits(10)
+                    .focused($isEnabled)
+            }
+            
             ZStack(alignment: .leading) {
                 Rectangle()
                     .fill(.black.opacity(0.2))
@@ -33,6 +37,7 @@ struct PhoneTextField: View {
             }.frame(height: 2)
             
         }
+        
     }
 }
 

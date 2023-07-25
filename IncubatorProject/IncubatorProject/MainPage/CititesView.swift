@@ -13,7 +13,6 @@ struct CitiesView: View {
         ScrollView {
             LazyVStack {
                 Divider()
-    
                 ForEach(ViewModel.cities) { city in
                     HStack {
                         Text(city.name).font(.system(size: 21))

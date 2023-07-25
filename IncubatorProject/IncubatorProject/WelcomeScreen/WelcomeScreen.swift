@@ -16,7 +16,7 @@ struct WelcomeScreen: View {
         }
         else {
             VStack(alignment: .leading,spacing: 16) {
-                VStack(alignment: .leading, spacing: 5) {
+                VStack(alignment: .leading, spacing: 10) {
                     Text("Добро пожаловать в ").font(.title)
                     Text("CarAI").font(.title)
                         .foregroundColor(.accentColor)
@@ -48,25 +48,31 @@ struct WelcomeScreen: View {
                     .disabled(!ViewModel.showOTPField)
                     .opacity(!ViewModel.showOTPField ? 0.4 : 1)
                     .padding(.top, 30)
-                Button(action: ViewModel.showOTPField ? ViewModel.verifyOTPCode : ViewModel.getOTPCode) {
-                    HStack(spacing: 15) {
-                        Text(ViewModel.showOTPField ? "Подтвердить код" : "Получить код")
-                            .fontWeight(.semibold)
-                            .contentTransition(.identity)
-                        Image(systemName: "line.diagonal.arrow")
-                            .font(.title3)
-                            .rotationEffect(.init(degrees: 45))
+                HStack {
+                    Button(action: ViewModel.showOTPField ? ViewModel.verifyOTPCode : ViewModel.getOTPCode) {
+                        HStack(spacing: 15) {
+                            Text(ViewModel.showOTPField ? "Подтвердить код" : "Получить код")
+                                .fontWeight(.semibold)
+                                .contentTransition(.identity)
+                            Image(systemName: "line.diagonal.arrow")
+                                .font(.title3)
+                                .rotationEffect(.init(degrees: 45))
+                        }
+                        .foregroundColor(.black)
+                        .padding(.horizontal, 25)
+                        .padding(.vertical)
+                        .background {
+                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .fill(.black.opacity(0.05))
+                        }
                     }
-                    .foregroundColor(.black)
-                    .padding(.horizontal, 25)
-                    .padding(.vertical)
-                    .background {
-                        RoundedRectangle(cornerRadius: 10, style: .continuous)
-                            .fill(.black.opacity(0.05))
-                    }
+                    Spacer()
+                    Image("applogo").resizable().frame(width: 80, height: 80)
                 }
                 .padding(.top, 30)
-                Spacer()                
+                
+                Spacer()
+                
             }.padding(.horizontal, 32).padding(.top)
                 .navigationTitle("Авторизация")
                 .navigationBarBackButtonTitleHidden()

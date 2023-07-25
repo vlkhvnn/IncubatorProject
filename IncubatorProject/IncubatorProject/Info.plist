@@ -9,14 +9,17 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>app-1-689099635564-ios-92d875b16ee23c8a845149</string>
+				<string>app-1-912700760267-ios-03a23a78c1a9d5fb41fb4e
+</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
-			<array/>
+			<array>
+				<string>com.googleusercontent.apps.912700760267-03diq9eki22l8c78e9k2u2p5j2j9s6gs</string>
+			</array>
 		</dict>
 	</array>
 </dict>
