@@ -30,8 +30,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
             landmarkName = "addUserMessageToFirestore()"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
             landmarkName = "addUserMessageToFirestore()"
             landmarkType = "7">
             <Locations>
@@ -87,255 +87,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B0F30029-E72B-46FB-8D96-AB84079037B0"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "getOTPCode()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B0F30029-E72B-46FB-8D96-AB84079037B0 - 36860054ece678fa"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 @Swift.MainActor @Sendable () -&gt; () in closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
-                  moduleName = "IncubatorProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "60">
-               </Location>
-               <Location
-                  uuid = "B0F30029-E72B-46FB-8D96-AB84079037B0 - 36860054ece678fa"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 @Swift.MainActor @Sendable () -&gt; () in closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
-                  moduleName = "IncubatorProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "36">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "48225095-3E4E-45B6-9CB9-AC9D57C0BDEC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "getOTPCode()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "48225095-3E4E-45B6-9CB9-AC9D57C0BDEC - 3852aa0bf4ebc86b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
-                  moduleName = "IncubatorProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "61"
-                  endingLineNumber = "61"
-                  offsetFromSymbolStart = "304">
-               </Location>
-               <Location
-                  uuid = "48225095-3E4E-45B6-9CB9-AC9D57C0BDEC - 7ad48814a4bf676"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
-                  moduleName = "IncubatorProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "61"
-                  endingLineNumber = "61"
-                  offsetFromSymbolStart = "52">
-               </Location>
-               <Location
-                  uuid = "48225095-3E4E-45B6-9CB9-AC9D57C0BDEC - e8e4a2b2403eb06f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
-                  moduleName = "IncubatorProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "61"
-                  endingLineNumber = "61"
-                  offsetFromSymbolStart = "68">
-               </Location>
-               <Location
-                  uuid = "48225095-3E4E-45B6-9CB9-AC9D57C0BDEC - 71c1bf5c31a97c65"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(6) suspend resume partial function for closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
-                  moduleName = "IncubatorProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "61"
-                  endingLineNumber = "61"
-                  offsetFromSymbolStart = "36">
-               </Location>
-               <Location
-                  uuid = "48225095-3E4E-45B6-9CB9-AC9D57C0BDEC - e8e4a2b2403eb06f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
-                  moduleName = "IncubatorProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "61"
-                  endingLineNumber = "61"
-                  offsetFromSymbolStart = "84">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "89C6DB38-6287-4E89-A297-53A5EDE68297"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "getOTPCode()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "89C6DB38-6287-4E89-A297-53A5EDE68297 - 59d3abd76de6ed67"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor @Sendable () -&gt; () in closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
-                  moduleName = "IncubatorProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "63"
-                  endingLineNumber = "63"
-                  offsetFromSymbolStart = "72">
-               </Location>
-               <Location
-                  uuid = "89C6DB38-6287-4E89-A297-53A5EDE68297 - e8e4a2b2403eb021"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
-                  moduleName = "IncubatorProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "63"
-                  endingLineNumber = "63"
-                  offsetFromSymbolStart = "328">
-               </Location>
-               <Location
-                  uuid = "89C6DB38-6287-4E89-A297-53A5EDE68297 - 67e9c656c743a26"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) await resume partial function for closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
-                  moduleName = "IncubatorProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "63"
-                  endingLineNumber = "63"
-                  offsetFromSymbolStart = "36">
-               </Location>
-               <Location
-                  uuid = "89C6DB38-6287-4E89-A297-53A5EDE68297 - 5976bb789f80382d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(5) suspend resume partial function for closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
-                  moduleName = "IncubatorProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "63"
-                  endingLineNumber = "63"
-                  offsetFromSymbolStart = "36">
-               </Location>
-               <Location
-                  uuid = "89C6DB38-6287-4E89-A297-53A5EDE68297 - 59d3abd76de6ed44"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor @Sendable () -&gt; () in closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
-                  moduleName = "IncubatorProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "64"
-                  endingLineNumber = "64"
-                  offsetFromSymbolStart = "72">
-               </Location>
-               <Location
-                  uuid = "89C6DB38-6287-4E89-A297-53A5EDE68297 - e8e4a2b2403eb021"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in IncubatorProject.MainViewModel.getOTPCode() -&gt; ()"
-                  moduleName = "IncubatorProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alikhantangirbergen/Desktop/IncubatorProject/IncubatorProject/IncubatorProject/ViewModel/MainViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "63"
-                  endingLineNumber = "63"
-                  offsetFromSymbolStart = "160">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "6A8E3F63-9D1F-4AAC-B9CC-2572171E6F8E"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -343,8 +94,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "339"
-            endingLineNumber = "339"
+            startingLineNumber = "332"
+            endingLineNumber = "332"
             landmarkName = "getMessageIndex(message:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -359,8 +110,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "updateFavoriteStatus(message:)"
             landmarkType = "7">
             <Locations>
@@ -407,8 +158,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "updateFavoriteStatus(message:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -423,8 +174,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "updateFavoriteStatus(message:)"
             landmarkType = "7">
             <Locations>
@@ -471,8 +222,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "updateFavoriteStatus(message:)"
             landmarkType = "7">
             <Locations>
@@ -519,8 +270,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
             landmarkName = "getFavourites()"
             landmarkType = "7">
          </BreakpointContent>
@@ -535,8 +286,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "getFavourites()"
             landmarkType = "7">
             <Locations>
@@ -583,8 +334,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "getFavourites()"
             landmarkType = "7">
          </BreakpointContent>
@@ -599,8 +350,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "getFavourites()"
             landmarkType = "7">
          </BreakpointContent>
@@ -615,8 +366,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "getFavourites()"
             landmarkType = "7">
          </BreakpointContent>
@@ -631,8 +382,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "getFavourites()"
             landmarkType = "7">
             <Locations>
@@ -679,8 +430,8 @@
             filePath = "IncubatorProject/ViewModel/MainViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "getFavourites()"
             landmarkType = "7">
             <Locations>

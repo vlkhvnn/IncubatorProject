@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import iPhoneNumberField
 
 struct WelcomeScreen: View {
     @StateObject var ViewModel : MainViewModel
@@ -15,68 +14,7 @@ struct WelcomeScreen: View {
             MainScreen(ViewModel: ViewModel)
         }
         else {
-            VStack(alignment: .leading,spacing: 16) {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Добро пожаловать в ").font(.title)
-                    Text("CarAI").font(.title)
-                        .foregroundColor(.accentColor)
-                    Spacer().frame(height: 15)
-                    Text("Войдите с помощью номера телефона чтобы продолжить")
-                        .font(.system(size: 16)).foregroundColor(.gray)
-                }.fontWeight(.semibold)
-                    
-                PhoneTextField(hint: "(700) 697-9370", text: $ViewModel.mobileNo)
-                    .disabled(ViewModel.showOTPField)
-                    .opacity(ViewModel.showOTPField ? 0.4 : 1)
-                    .overlay(alignment: .trailing,content: {
-                        Button("Изменить") {
-                            withAnimation(.easeInOut) {
-                                ViewModel.showOTPField = false
-                                ViewModel.otpCode = ""
-                                ViewModel.CLIENT_CODE = ""
-                            }
-                        }
-                        .font(.caption)
-                        .foregroundColor(.indigo)
-                        .opacity(ViewModel.showOTPField ? 1 : 0)
-                        .padding(.trailing, 15)
-                    })
-                    .padding(.top, 40)
-                    
-                    
-                CustomTextField(hint: "Код", text: $ViewModel.otpCode)
-                    .disabled(!ViewModel.showOTPField)
-                    .opacity(!ViewModel.showOTPField ? 0.4 : 1)
-                    .padding(.top, 30)
-                HStack {
-                    Button(action: ViewModel.showOTPField ? ViewModel.verifyOTPCode : ViewModel.getOTPCode) {
-                        HStack(spacing: 15) {
-                            Text(ViewModel.showOTPField ? "Подтвердить код" : "Получить код")
-                                .fontWeight(.semibold)
-                                .contentTransition(.identity)
-                            Image(systemName: "line.diagonal.arrow")
-                                .font(.title3)
-                                .rotationEffect(.init(degrees: 45))
-                        }
-                        .foregroundColor(.black)
-                        .padding(.horizontal, 25)
-                        .padding(.vertical)
-                        .background {
-                            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                .fill(.black.opacity(0.05))
-                        }
-                    }
-                    Spacer()
-                    Image("applogo").resizable().frame(width: 80, height: 80)
-                }
-                .padding(.top, 30)
-                
-                Spacer()
-                
-            }.padding(.horizontal, 32).padding(.top)
-                .navigationTitle("Авторизация")
-                .navigationBarBackButtonTitleHidden()
-                .alert(ViewModel.errorMessage, isPresented:  $ViewModel.showError) {}
+            AuthenticationScreen(ViewModel: ViewModel)
         }
     }
 }
@@ -87,34 +25,159 @@ struct WelcomeScreen_Previews: PreviewProvider {
     }
 }
 
-extension View {
-  func navigationBarBackButtonTitleHidden() -> some View {
-    self.modifier(NavigationBarBackButtonTitleHiddenModifier())
-  }
+struct AuthenticationScreen : View {
+    @StateObject var ViewModel : MainViewModel
+    var body: some View {
+        VStack(alignment: .leading, spacing: 50) {
+            VStack(alignment: .center, spacing: 6) {
+                Text("  Добро пожаловать в ")
+                Text("CarAI").foregroundColor(.accentColor)
+            }.font(.system(size: 32)).bold()
+            ZStack {
+                RoundedRectangle(cornerRadius: 12)
+                    .foregroundColor(.accentColor).opacity(0.7)
+                    .frame(height: 50)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.black)
+                    }
+                HStack {
+                    Spacer()
+                    ZStack {
+                        if ViewModel.authType == .registration {
+                            RoundedRectangle(cornerRadius: 12)
+                                .foregroundColor(.white).frame(height: 40)
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(Color.black)
+                                }
+                        }
+                        Button {
+                            withAnimation {
+                                ViewModel.authType = .registration
+                            }
+                            
+                        } label: {
+                            RoundedRectangle(cornerRadius: 12)
+                                .foregroundColor(.white.opacity(0)).frame(height: 40)
+                        }
+                        Text("Регистрация")
+                    }
+                    Spacer()
+                    ZStack {
+                        Button {
+                            withAnimation {
+                                ViewModel.authType = .authorization
+                            }
+                        } label: {
+                            RoundedRectangle(cornerRadius: 12)
+                                .foregroundColor(.white.opacity(0)).frame(height: 40)
+                        }
+                        if ViewModel.authType == .authorization {
+                            RoundedRectangle(cornerRadius: 12)
+                                .foregroundColor(.white).frame(height: 40)
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(Color.black)
+                                }
+                        }
+                        Text("Авторизация")
+                    }
+                    Spacer()
+                }.fontWeight(.semibold)
+            }
+            VStack(alignment: .leading, spacing: 24) {
+                VStack(alignment: .leading) {
+                    Text("Электронная почта")
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.gray)
+                            .frame(height: 60)
+                        TextField("Ваша почта", text: $ViewModel.userEmail)
+                            .padding(.leading)
+                            .frame(height: 60)
+                    }
+                    
+                    
+                    
+                }
+                VStack(alignment: .leading) {
+                    Text("Пароль")
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.gray)
+                            .frame(height: 60)
+                        TextField("Пароль", text: $ViewModel.userPassword)
+                            .padding(.leading)
+                            .frame(height: 60)
+                    }
+                    
+                    
+                    
+                }
+            }
+            
+            
+            Button {
+                if ViewModel.authType == .registration {
+                    if ViewModel.userEmail.isValidEmail() {
+                        ViewModel.register()
+                    }
+                    else {
+                        ViewModel.inValidEmail = true
+                    }
+                }
+                else {
+                    ViewModel.login()
+                }
+            } label: {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 12)
+                        .frame(height: 56)
+                    Text(ViewModel.authType == .registration ?  "Зарегистрироваться" : "Войти").foregroundColor(.white)
+                        .fontWeight(.semibold)
+                }
+            }.padding(.vertical)
+            if ViewModel.inValidEmail {
+                Text("Электронная почта уже занята или недействительна. Пожалуйста, используйте другой или действующий адрес электронной почты")
+            }
+            
+            Spacer()
+            
+            
+        }.padding()
+    }
 }
 
+extension View {
+    func navigationBarBackButtonTitleHidden() -> some View {
+        self.modifier(NavigationBarBackButtonTitleHiddenModifier())
+    }
+}
+
+
 struct NavigationBarBackButtonTitleHiddenModifier: ViewModifier {
-
-  @Environment(\.dismiss) var dismiss
-
-  @ViewBuilder @MainActor func body(content: Content) -> some View {
-    content
-      .navigationBarBackButtonHidden(true)
-      .navigationBarItems(
-        leading: Button(action: { dismiss() }) {
-          Image(systemName: "chevron.left")
-            .foregroundColor(.black)
-          .imageScale(.large) })
-      .contentShape(Rectangle()) // Start of the gesture to dismiss the navigation
-      .gesture(
-        DragGesture(coordinateSpace: .local)
-          .onEnded { value in
-            if value.translation.width > .zero
-                && value.translation.height > -30
-                && value.translation.height < 30 {
-              dismiss()
-            }
-          }
-      )
-  }
+    
+    @Environment(\.dismiss) var dismiss
+    
+    @ViewBuilder @MainActor func body(content: Content) -> some View {
+        content
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(
+                leading: Button(action: { dismiss() }) {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.black)
+                    .imageScale(.large) })
+            .contentShape(Rectangle()) // Start of the gesture to dismiss the navigation
+            .gesture(
+                DragGesture(coordinateSpace: .local)
+                    .onEnded { value in
+                        if value.translation.width > .zero
+                            && value.translation.height > -30
+                            && value.translation.height < 30 {
+                            dismiss()
+                        }
+                    }
+            )
+    }
 }

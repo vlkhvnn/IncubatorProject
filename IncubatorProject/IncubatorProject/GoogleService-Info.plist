@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>912700760267-03diq9eki22l8c78e9k2u2p5j2j9s6gs.apps.googleusercontent.com</string>
+	<string>912700760267-csg582d82geleqrervd234rhglf4to39.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.912700760267-03diq9eki22l8c78e9k2u2p5j2j9s6gs</string>
+	<string>com.googleusercontent.apps.912700760267-csg582d82geleqrervd234rhglf4to39</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAFci3W7bgTMgH84kIRgdQWx7rH9ujKhQE</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.nf2023.carai.</string>
+	<string>com.nf2023.carai</string>
 	<key>PROJECT_ID</key>
 	<string>finalcarai-4eb43</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:912700760267:ios:03a23a78c1a9d5fb41fb4e</string>
+	<string>1:912700760267:ios:00fc3b0bab50510b41fb4e</string>
 </dict>
 </plist>

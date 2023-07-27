@@ -11,12 +11,28 @@ import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
+enum authentication  {
+    case none
+    case yes
+    case no
+}
+
+enum AuthType {
+    case registration
+    case authorization
+}
+
 class MainViewModel : ObservableObject {
     //MARK: Authentication properties
-    @Published var mobileNo = ""
-    @Published var otpCode = ""
-    @Published var CLIENT_CODE = ""
-    @Published var showOTPField = false
+    @Published var userEmail = ""
+    @Published var userPassword = ""
+    @Published var repeatedPassword = ""
+    @Published var inValidPassword : authentication = .none
+    @Published var isAuthLoading = false
+    @Published var inValidEmail = false
+    @Published var userLoggedIn = false
+    @Published var authType : AuthType = .registration
+    
     
     //MARK: Chat properties
     @Published var botResponse = ""
@@ -60,64 +76,43 @@ class MainViewModel : ObservableObject {
         City(name: "Семей"),
         City(name: "Караганды")
     ]
-    //MARK: Firebase API's
-    typealias Task = _Concurrency.Task
-    func getOTPCode() {
-        UIApplication.shared.closeKeyBoard()
-        Task{
-            do {
-                //MARK: Disable it when testing with Real Device
-                Auth.auth().settings?.isAppVerificationDisabledForTesting = false
-                
-                let code = try await PhoneAuthProvider.provider().verifyPhoneNumber("+7 \(mobileNo)", uiDelegate: nil)
-                print(mobileNo)
-                await MainActor.run(body: {
-                    userPhone = "+7 \(mobileNo)"
-                    UserDefaults.standard.set(self.userPhone, forKey: "userPhone")
-                    CLIENT_CODE = code
-                    //MARK: Enabling OTP Field When It's Success
-                    withAnimation(.easeInOut) {
-                        showOTPField = true
-                    }
-                })
-            }
-            catch {
-                await handleError(error: error)
-            }
-        }
-        
-    }
     
-    func verifyOTPCode() {
-        UIApplication.shared.closeKeyBoard()
-        Task {
-            do {
-                let credential = PhoneAuthProvider.provider().credential(withVerificationID: CLIENT_CODE, verificationCode: otpCode)
-                try await Auth.auth().signIn(with: credential)
-                
-                //MARK: User logged in successfully
-                print("Success!")
-                await MainActor.run(body: {
-                    withAnimation(.easeInOut) {
-                        logStatus = true
-                        userID = Auth.auth().currentUser!.uid
-                        UserDefaults.standard.set(self.userID, forKey: "userID")
-                        UserDefaults.standard.set(true, forKey: "userIsLogged")
-                        isLoading = false
-                    }
-                })
+    func login() {
+        Auth.auth().signIn(withEmail: userEmail, password: userPassword) { [self] result, error in
+            if let error = error {
+                withAnimation {
+                    inValidPassword = .yes
+                    print(error.localizedDescription)
+                }
             }
-            catch {
-                await handleError(error: error)
+            if let result = result {
+                withAnimation {
+                    print("success")
+                    inValidPassword = .no
+                    logStatus = true
+                    userID = Auth.auth().currentUser!.uid
+                    UserDefaults.standard.set(self.userID, forKey: "userID")
+                    UserDefaults.standard.set(true, forKey: "userIsLogged")
+                    
+                }
             }
         }
     }
     
-    func handleError(error: Error) async {
-        await MainActor.run(body: {
-            errorMessage = error.localizedDescription
-            showError.toggle()
-        })
+    func register() {
+        Auth.auth().createUser(withEmail: self.userEmail, password: self.userPassword) { [self] result, error in
+            if error != nil {
+                print(error!.localizedDescription)
+                inValidEmail = true
+            }
+            if let result = result {
+                inValidPassword = .no
+                logStatus = true
+                userID = Auth.auth().currentUser!.uid
+                UserDefaults.standard.set(self.userID, forKey: "userID")
+                UserDefaults.standard.set(true, forKey: "userIsLogged")
+            }
+        }
     }
     
     func getMessages() {
@@ -158,7 +153,6 @@ class MainViewModel : ObservableObject {
             }
             for document in documents {
                 let data = document.data()
-                let id = document.documentID
                 let content = data["content"] as? String ?? ""
                 let isUserMessage = data["isUserMessage"] as? Bool ?? false
                 let isFavourite = data["image"] as? Bool ?? true
@@ -228,7 +222,7 @@ class MainViewModel : ObservableObject {
     func sendMessage() {
         let provider = MoyaProvider<APIService>()
         
-        if chosenCity != "" {
+        if chosenCity != nil {
             self.savedUserMessage += ". В городе \(self.chosenCity)"
         }
         provider.request(
@@ -312,10 +306,9 @@ class MainViewModel : ObservableObject {
     }
     
     func signOut() {
-        mobileNo = ""
-        showOTPField = false
-        otpCode = ""
-        CLIENT_CODE = ""
+        userEmail = ""
+        userPassword = ""
+        repeatedPassword = ""
         logStatus = false
         userID = ""
         UserDefaults.standard.set(self.userID, forKey: "userID")
